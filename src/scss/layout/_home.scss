@@ -98,7 +98,7 @@ section .container {
 
 .profile-description {
   width: 100%;
-  min-width: 32rem;
+  min-width: 35rem;
   padding: 1rem 3rem;
 
   @include respond(tablet-portrait) {
