@@ -8,8 +8,10 @@ import Typed from 'typed.js';
 window.onload = () => {
     const options = {
         strings: [
-            'Full Stack Developer',
-            'Traveler',
+            `...`,
+            `I'm <span class="highlight">Edwin Torres</span>`,
+            `Full Stack Developer`,
+            `Traveler`,
             `Passionate for <span class="highlight">coding</span>`],
         typeSpeed: 80
     };

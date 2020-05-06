@@ -3,6 +3,7 @@
 @import 'base/reset';
 @import 'base/typography';
 
+/** MIXINS **/
 // @import 'mixins/vendor-prefixes';
 // @import 'mixins/opacity';
 // @import 'mixins/buttons';
@@ -10,13 +11,16 @@
 // @import 'mixins/card';
 // @import 'mixins/spin';
 
+/** LAYOUTS **/
 @import 'layout/container';
+@import 'layout/home';
 // @import 'layout/navigation';
 // @import 'layout/main';
 // @import 'layout/header';
 // @import 'layout/footer';
 
-// @import 'vendors/material-icons';
+/** VENDORS **/
+@import 'vendors/font-awesome/font-awesome';
 
 // @import 'components/card';
 

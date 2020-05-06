@@ -11,6 +11,10 @@
   src: url("/assets/fonts/Raleway-Bold.ttf");
 }
 
+$font-bold: 'Raleway-bold';
+$font-semibold: 'Raleway-semibold';
+$font-regular: 'Raleway';
+
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: $font-regular, sans-serif;
 }

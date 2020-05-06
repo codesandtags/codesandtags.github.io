@@ -14,7 +14,7 @@
     "build": "npm run clean && NODE_ENV=production webpack",
     "lint": "eslint src config",
     "lint:fix": "npm run lint -- --fix",
-    "deploy": "gh-pages -d dist -b master"
+    "deploy": "webpack && gh-pages -d dist -b master"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -35,6 +35,8 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "scrollreveal": "^4.0.6",
     "typed.js": "^2.0.11"
   }
 }
