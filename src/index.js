@@ -11,7 +11,7 @@ window.onload = () => {
             `...`,
             `I'm <span class="highlight">Edwin Torres</span>`,
             `Full Stack Developer`,
-            `Also I'm Traveler <span class="highlight"><i class="fas fa-globe-americas"></i></span>`,
+            `Also I'm <span class="highlight">Traveler</span> <i class="fas fa-globe-americas"></i>`,
             `I love <span class="highlight">coding <3</span>`],
         typeSpeed: 80
     };

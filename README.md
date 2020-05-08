@@ -5,7 +5,7 @@
 |  Dependency | Status  | Description  |
 |---|---|---|
 | [Webpack](https://github.com/webpack/webpack)  | <img src="https://img.shields.io/npm/v/webpack.svg" alt="npm">  |  A bundler for javascript and friends. Packs many modules into a few bundled assets. Code Splitting allows for loading parts of the application on demand. |
-|   |   |   |
+|  |   |   |
 |   |   |   |
 
 ## License
