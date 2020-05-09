@@ -92,7 +92,11 @@ section .container {
     a {
       text-transform: none;
       border: none;
-      color: #fff;
+      color: $color-white;
+    }
+
+    a:hover {
+      color: $color-primary;
     }
   }
 }
