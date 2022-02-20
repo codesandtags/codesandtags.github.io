@@ -54,6 +54,7 @@ module.exports = {
             {from: `${srcDir}/assets`, to: 'assets'},
             {from: 'src/robots.txt', to: ''},
             {from: 'src/manifest.json', to: ''},
+            {from: 'CNAME', to: ''}
         ]),
     ],
     output: {
