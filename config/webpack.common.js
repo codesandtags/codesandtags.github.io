@@ -21,10 +21,14 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.s[ac]ss$/i,
                 use: [
-                    MiniCssExtractPlugin.loader, 'css-loader', // translates CSS into CommonJS
-                    'sass-loader' // compiles Sass to CSS, using Node Sass by default
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
                 ]
             },
             {
@@ -50,12 +54,14 @@ module.exports = {
             filename: "[name].css",
             chunkFilename: '[id].css',
         }),
-        new CopyPlugin([
-            {from: `${srcDir}/assets`, to: 'assets'},
-            {from: 'src/robots.txt', to: ''},
-            {from: 'src/manifest.json', to: ''},
-            {from: 'CNAME', to: ''}
-        ]),
+        new CopyPlugin({
+            patterns: [
+                {from: `${srcDir}/assets`, to: 'assets'},
+                {from: 'src/robots.txt', to: ''},
+                {from: 'src/manifest.json', to: ''},
+                {from: 'CNAME', to: ''}
+            ]
+        }),
     ],
     output: {
         filename: '[name].bundle.js',
