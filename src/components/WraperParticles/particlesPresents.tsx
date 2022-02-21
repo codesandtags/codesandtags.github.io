@@ -1,4 +1,4 @@
-const PRESETS = {
+const PRESETS: any = {
   default: {
     background: {
       color: {
@@ -304,7 +304,7 @@ const PRESETS = {
   },
 };
 
-const particlesPresets = (name) => {
+const particlesPresets = (name: string) => {
   if (PRESETS[name]) {
     return PRESETS[name];
   }
