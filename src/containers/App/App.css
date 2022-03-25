@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+header {
+    background-image:linear-gradient(rgba(75, 73, 77, 0.2), rgba(45, 44, 46, 0.9)), url('/assets/images/bg_website.jpeg');
+}
