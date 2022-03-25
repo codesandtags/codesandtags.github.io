@@ -4,7 +4,7 @@ import profile from "./profile.json";
 const Profile = () => {
   return (
     <>
-      <div className="container lg:w-2/6 xl:w-2/7 sm:w-full md:w-2/3    bg-white  shadow-lg    transform   duration-200 easy-in-out">
+      <div className="container lg:w-2/6 xl:w-2/7 sm:w-full md:w-2/3    bg-white  shadow-lg    transform   duration-200 easy-in-out bg-gray-100">
         <div className="flex justify-center px-5  -mt-12">
           <img
             className="h-48 w-48 bg-white p-2 rounded-full"
@@ -16,10 +16,13 @@ const Profile = () => {
           <div className="text-center px-14">
             <h2 className="text-gray-800 text-3xl font-bold">{profile.name}</h2>
             <p className="text-gray-400 mt-2">{profile.nickname}</p>
-            <p className="mt-2 text-gray-600">{profile.description}</p>
+            <p className="mt-2 text-gray-600 text-center">
+            👋🏼 Hello, I'm a passionate <strong className="text-violet-600">Full-Stack Software Developer</strong>, 
+            I enjoy web development 💻, photography 📷, traveling 🌎, and sharing knowledge 📚.
+            </p>
           </div>
           <hr className="mt-6" />
-          <div className="flex flex-wrap gap-2 justify-center items-center p-2 bg-gray-50">
+          <div className="flex flex-wrap gap-2 justify-center items-center p-2 bg-gray-200">
               {profile.social.map((socialNetwork) => {
                 return (
                   <a href={socialNetwork.link} target="_blank">
