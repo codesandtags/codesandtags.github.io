@@ -25,7 +25,7 @@ const Profile = () => {
           <div className="flex flex-wrap gap-2 justify-center items-center p-2 bg-gray-200 rounded-b-md">
               {profile.social.map((socialNetwork) => {
                 return (
-                  <a href={socialNetwork.link} target="_blank">
+                  <a href={socialNetwork.link} target="_blank" key={socialNetwork.name}>
                     <button className="bg-violet-500 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded hover:bg-blue-600 active:bg-blue-700">
                       <i className={socialNetwork.image}></i>
                     </button>
