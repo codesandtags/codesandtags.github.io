@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>codesandtags | curiosidad intensa por la programación</title>
         <meta name="description" content="Tutoriales de programación, experimentos de código y curiosidades del mundo del software" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
