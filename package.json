@@ -1,32 +1,29 @@
 {
-  "description": "Codes and Tags Official site and portfolio",
-  "license": "MIT",
-  "name": "codesandtags",
+  "name": "codesandtags-website",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=12"
-  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "publish": "gh-pages -d dist -b master"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-tsparticles": "^1.41.4"
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.5",
+    "next": "13.0.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.3"
   },
   "devDependencies": {
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@vitejs/plugin-react": "^1.0.7",
-    "gh-pages": "^3.2.3",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0"
+    "autoprefixer": "^10.4.13",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
   }
 }
