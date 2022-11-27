@@ -23,6 +23,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  ## Sets environment variable
+  NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
+
 jobs:
   # Build job
   build:
