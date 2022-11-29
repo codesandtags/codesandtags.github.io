@@ -10,12 +10,30 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/** Brand colors ***/
+:root, :root.light {
+  --font-color: black;
+  --background-color: white;
+}
+
+/* automatic dark mode */
+/* ❗️ keep the rules in sync with the manual dark mode below! */
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  :root {
+    --font-color: white;
+    --background-color: black;
   }
-  body {
-    color: white;
-    background: black;
-  }
+}
+
+/* manual dark mode 
+/* ❗️ keep the rules in sync with the automatic dark mode above! */
+:root.dark {
+  --some-value: white;
+  --some-other-value: black;
+}
+
+/* use the variables */
+body {
+  color: var(--font-color);
+  background-color: var(--background-color);
 }
