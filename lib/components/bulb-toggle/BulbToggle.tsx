@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import styles from './BulbToggle.module.css';
+import cn from 'clsx';
 
 const DARK_THEME = 'dark'
 const LIGHT_THEME = 'light'
@@ -14,7 +16,6 @@ const getCurrentTheme = () => {
 
     return matchesDarkTheme ? DARK_THEME : LIGHT_THEME;
 }
-
 
 const toggleDarkLightMode = () => {
     const rootClasses = document.documentElement.classList;
@@ -32,29 +33,26 @@ const toggleDarkLightMode = () => {
 
 export default function BulbToggle() {
     const [toggleBulb, setToggleBulb] = useState(true);
+    let bulbSound;
 
     const toggleDarkMode = () => {
         setToggleBulb(!toggleBulb);
         toggleDarkLightMode();
+        bulbSound = new Audio('/sounds/bulb-switch.mp3');
+        bulbSound.play();
     }
 
     useEffect(() => {
         const isLightTheme = getCurrentTheme() === LIGHT_THEME;
         console.log('The theme is: ', getCurrentTheme());
         setToggleBulb(isLightTheme);
+        
     }, []);
 
-    const bulbImage = (toggleBulb) ? 'bulb-on' : 'bulb-off';
-    const bulbSizePx = `80px`;
-    const backgroundStyle = {
-        backgroundImage: `url(/images/${bulbImage}.png)`,
-        backgroundSize: 'contain',
-        transform: 'rotate(180deg)',
-        transition: 'background-image 0.5s ease',
-        cursor: 'pointer',
-        width: bulbSizePx,
-        height: bulbSizePx
-    }
+    const bulbState = (toggleBulb) ? styles.bulbOn : styles.bulbOff;
 
-    return <div style={{ ...backgroundStyle }} onClick={toggleDarkMode}></div>
+    return <div className={cn(
+        styles.bulb,
+        bulbState
+    )} onClick={toggleDarkMode}></div>
 }

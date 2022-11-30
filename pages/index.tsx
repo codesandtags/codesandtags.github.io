@@ -6,7 +6,7 @@ import sayHello from '../lib/utils/console';
 
 import Footer from '../lib/components/Footer';
 import MetaTags from '../lib/components/MetaTags';
-import BulbToggle from '../lib/components/BulbToggle';
+import BulbToggle from '../lib/components/bulb-toggle/BulbToggle';
 
 sayHello();
 

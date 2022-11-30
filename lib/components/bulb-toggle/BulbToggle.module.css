@@ -1,0 +1,36 @@
+.bulb {
+    --bulb-size: 70px;
+    background-size: contain;
+    transform: rotate(0);
+    transition: background-image 0.5s ease, transform 0.5s ease-in-out;
+    cursor: pointer;
+    width: var(--bulb-size);
+    height: var(--bulb-size);
+}
+
+.bulbOn {
+    background-image: url(/images/bulb-on.png);
+}
+
+.bulbOff {
+    background-image: url(/images/bulb-off.png);
+}
+
+.bulb:hover {
+    transform: rotate(-45deg);
+}
+
+
+
+@keyframes pendulum {
+    0% { transform: rotate(190deg); }
+    10% { transform: rotate(200deg); }
+    20% { transform: rotate(205deg); }
+    40% { transform: rotate(200deg); }
+    50% { transform: rotate(190deg); }
+    60% { transform: rotate(180deg); }
+    70% { transform: rotate(170deg); }
+    80% { transform: rotate(180deg); }
+    90% { transform: rotate(185deg); }
+    100% { transform: rotate(190deg); }
+}
