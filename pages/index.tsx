@@ -4,12 +4,15 @@ import Script from 'next/script';
 import styles from '../styles/Home.module.css'
 import sayHello from '../lib/utils/console';
 
+import Footer from '../lib/components/Footer';
+import MetaTags from '../lib/components/MetaTags';
+import BulbToggle from '../lib/components/BulbToggle';
+
 sayHello();
 
 export default function Home() {
-
   return (
-    <div className={styles.container}>
+    <div className="container mx-auto">
       <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
       <Script strategy="lazyOnload">
         {`  window.dataLayer = window.dataLayer || [];
@@ -24,37 +27,37 @@ export default function Home() {
       <Head>
         <title>Codes and Tags | Curiosidad intensa por la programación</title>
         <link rel="icon" href="/favicon.ico" />
-
-        <meta name="description" content="Tutoriales de programación, experimentos de código y curiosidades del mundo del software. Curiosidad intensa por la programación." />
-        <meta name="theme-color" content="#449ed0" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@codesandtags" />
-        <meta name="twitter:creator" content="@codesandtags" />
-        <meta name="twitter:title" content="Codes and Tags" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Codes and Tags" />
-        <meta property="og:site_name" content="Codes and Tags" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="es" />
+        <MetaTags />
       </Head>
 
+      <nav className='flex flex-row flex-end justify-end'>
+        <BulbToggle />
+      </nav>
+
       <main className={styles.main}>
-        <header className='flex flex-col items-center'>
-          <Image src="/images/logo.png" alt="codesandtags" className={styles.logo} width={300} height={300} />
-        </header>
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center	content-center mx-auto py-8">
+          <Image src="/images/logo-transparent.png" alt="codesandtags" className={styles.logo} width={200} height={200} />
+
+          <h1 className="text-normal px-4">Curiosidad Intensa por la programación</h1>
+
+          <ul className='flex flex-row gap-3 mt-4'>
+            <a href="https://youtube.com/@codesandtags" target="_blank">
+              <div className="icon icon-youtube"></div>
+            </a>
+            <a href="https://twitter.com/codesandtags" target="_blank">
+              <div className="icon icon-twitter"></div>
+            </a>
+            <a href="https://www.instagram.com/ed_traveler" target="_blank">
+              <div className="icon icon-instagram"></div>
+            </a>
+            <a href="https://ca.linkedin.com/company/codesandtags" target="_blank">
+              <div className="icon icon-linkedin"></div>
+            </a>
+          </ul>
+        </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://www.codesandtags.io/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {' '}
-          <Image src="/images/codesandtags-letters.png" alt="codesandtags" width={150} height={80} />
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
