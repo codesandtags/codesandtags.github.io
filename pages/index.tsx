@@ -12,7 +12,7 @@ sayHello();
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="container mx-auto">
       <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
       <Script strategy="lazyOnload">
         {`  window.dataLayer = window.dataLayer || [];
@@ -30,14 +30,31 @@ export default function Home() {
         <MetaTags />
       </Head>
 
-      <nav className='flex flex-row flex-end'>
-        <BulbToggle/>
+      <nav className='flex flex-row flex-end justify-end'>
+        <BulbToggle />
       </nav>
 
       <main className={styles.main}>
-        <header className='flex flex-col items-center'>
-          <Image src="/images/logo.png" alt="codesandtags" className={styles.logo} width={200} height={200} />
-        </header>
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center	content-center mx-auto py-8">
+          <Image src="/images/logo-transparent.png" alt="codesandtags" className={styles.logo} width={200} height={200} />
+
+          <h1 className="text-normal px-4">Curiosidad Intensa por la programación</h1>
+
+          <ul className='flex flex-row gap-3 mt-4'>
+            <a href="https://youtube.com/@codesandtags" target="_blank">
+              <div className="icon icon-youtube"></div>
+            </a>
+            <a href="https://twitter.com/codesandtags" target="_blank">
+              <div className="icon icon-twitter"></div>
+            </a>
+            <a href="https://www.instagram.com/ed_traveler" target="_blank">
+              <div className="icon icon-instagram"></div>
+            </a>
+            <a href="https://ca.linkedin.com/company/codesandtags" target="_blank">
+              <div className="icon icon-linkedin"></div>
+            </a>
+          </ul>
+        </div>
       </main>
 
       <Footer />
