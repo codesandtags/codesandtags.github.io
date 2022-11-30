@@ -44,7 +44,7 @@ export default function BulbToggle() {
 
     useEffect(() => {
         const isLightTheme = getCurrentTheme() === LIGHT_THEME;
-        console.log('The theme is: ', getCurrentTheme());
+        console.info(' 👩‍🎨 The default theme is: ', getCurrentTheme());
         setToggleBulb(isLightTheme);
         
     }, []);
