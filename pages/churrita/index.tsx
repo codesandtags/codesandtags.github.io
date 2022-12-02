@@ -135,7 +135,7 @@ export default function Home() {
                      <br />
                      Por tu sinceridad absoluta y darle vida a mi vida,
                      <br />
-                     Por reír, soñar, cantar y cuidar a NALA 🐈‍⬛ 
+                     Por reír, soñar, cantar y cuidar a NALA 🐈‍⬛
                      <br />
                      Por cada emoción única que tienes,
                      <br />
@@ -175,7 +175,8 @@ export default function Home() {
                      <br />
                      Nos daremos un fuerte abrazo y nos iremos a viajar ✈️,
                      <br />
-                     ya sea por 🇨🇦 Toronto, Montreal, 🇨🇴 Colombia, o el 🌎 mundo entero,
+                     ya sea por 🇨🇦 Toronto, Montreal, 🇨🇴 Colombia, o el 🌎 mundo
+                     entero,
                      <br />
                      No importa donde sea el destino, se que vamos a llegar a
                      tiempo.
@@ -185,8 +186,19 @@ export default function Home() {
                      <br />
                      Así que espero ❤️ Churrita que hoy estemos felices,
                      <br />
-                     Porque hoy 🥂 brindo por este día y el día en que naciste....
+                     Porque hoy 🥂 brindo por este día y el día en que
+                     naciste....
                   </p>
+
+                  <div className="flex items-center justify-center">
+                  <Image
+                     className="my-8"
+                     src="/images/churrita-nala.png"
+                     width={300}
+                     height={300}
+                     alt="Al infinito y mas alla"
+                  />
+                  </div>
                </div>
             ) : null}
          </div>
