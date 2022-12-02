@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ConfettiGenerator from "confetti-js";
+
 import styles from "../../styles/Home.module.css";
 
 export default function Home() {
@@ -19,6 +21,14 @@ export default function Home() {
       song.play();
    }
 
+   useEffect(() => {
+      const confettiSettings = { target: "my-canvas", start_from_edge: true};
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+
+      return () => confetti.clear();
+   }, []); // add the var dependencies or not
+
    return (
       <div className={styles.container}>
          <Head>
@@ -30,7 +40,16 @@ export default function Home() {
             <link rel="icon" href="/favicon.ico" />
          </Head>
 
-         <div className="w-full md:w-1/2 flex flex-col justify-center items-center	content-center mx-auto py-8">
+         <canvas id="my-canvas" style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          zIndex: -1
+         }} ></canvas>
+         <div
+            className="w-full md:w-1/2 flex flex-col justify-center items-center	content-center mx-auto py-8"
+            id="churrita"
+         >
             <h1 className="text-3xl mb-5">👋 Hi Churrita</h1>
             <h2 className="text-xl mb-5">🎂 Today is December 2nd, 2022</h2>
 
@@ -191,13 +210,13 @@ export default function Home() {
                   </p>
 
                   <div className="flex items-center justify-center">
-                  <Image
-                     className="my-8"
-                     src="/images/churrita-nala.png"
-                     width={300}
-                     height={300}
-                     alt="Al infinito y mas alla"
-                  />
+                     <Image
+                        className="my-8"
+                        src="/images/churrita-nala.png"
+                        width={300}
+                        height={300}
+                        alt="Al infinito y mas alla"
+                     />
                   </div>
                </div>
             ) : null}
