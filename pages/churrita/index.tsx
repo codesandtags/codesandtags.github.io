@@ -56,7 +56,7 @@ export default function Home() {
                      ...BUENO no sé cómo empezar esto
                      <br />
                      Es la primera vez que lo hago
-                     <br />Y más que desearte tan solo un FELIZ cumpleaños 🎂
+                     <br />Y más que desearte tan solo un FELIZ CUMPLEAÑOS 🎂
                      <br />
                      QUISIERA recordarte en estás sinceras palabras
                      <br />
@@ -71,7 +71,7 @@ export default function Home() {
                      <br />
                      FINALMENTE llegó el día que tanto esperabas,
                      <br />
-                     Aquel 2 de Diciembre que tanto se alargaba.
+                     Aquel 2 de 🎄 Diciembre que tanto se alargaba.
                   </p>
 
                   <p className="my-4">
@@ -116,9 +116,9 @@ export default function Home() {
 
                   <p className="my-4">
                      <br />
-                     LA VIDA continúa y si algún día miras atrás, ojalá tomes
+                     LA VIDA continúa y si algún día miras atrás,
                      <br />
-                     impulso y sólo vuelve a recordar,
+                     ojalá tomes impulso y sólo vuelve a recordar,
                      <br />
                      que cada día que vives cuenta y los segundos suman,
                      <br />
@@ -131,56 +131,61 @@ export default function Home() {
 
                   <p className="my-4">
                      <br />
-                     HOY también te agradezco por cada sonrisa, por tu
+                     HOY también te agradezco por cada sonrisa,
                      <br />
-                     sinceridad absoluta y darle vida a mi vida, Por reír,
+                     Por tu sinceridad absoluta y darle vida a mi vida,
                      <br />
-                     soñar, cantar y cuidar a NALA Por cada emoción única que
+                     Por reír, soñar, cantar y cuidar a NALA 🐈‍⬛ 
                      <br />
-                     tienes, y la manera en que me hablas, Por comer, rezar,
+                     Por cada emoción única que tienes,
                      <br />
-                     amar y viajar mi lado, Por cada escrito que me haces y las
+                     y la manera en que me hablas,
                      <br />
-                     fotos que tomamos. Por todas esas cosas que hoy en día te
+                     Por comer, rezar, amar y viajar mi lado,
                      <br />
-                     definen, Un brindis por este día Churrita y el día en que
+                     Por cada escrito que me haces y las fotos que tomamos,
                      <br />
-                     naciste.
+                     Por todas esas cosas que hoy en día te definen,
+                     <br />
+                     Un brindis por este día Churrita y el día en que naciste.
                   </p>
 
                   <p className="my-4">
                      <br />
-                     QUIERO que cada sueño que tengas se te cumpla, Que tengas
+                     QUIERO que cada sueño que tengas se te cumpla,
                      <br />
-                     sabiduría y se vayan tus dudas, Cree en cada paso que des y
+                     Que tengas sabiduría y se vayan tus dudas,
                      <br />
-                     en tus capacidades, porque tienes muchos talentos, y tu muy
+                     Cree en cada paso que des y en tus capacidades,
                      <br />
-                     bien lo sabes. y cuando estés triste sólo levanta tu
+                     porque tienes muchos talentos, y tu muy bien lo sabes.
                      <br />
-                     mirada, agradece por la vida y las personas que te aman,
+                     y cuando estés triste sólo levanta tu mirada,
+                     <br />
+                     agradece por la vida y las personas que te aman,
                   </p>
 
                   <p className="my-4">
                      <br />
                      En un día como estos como me gustaría estar a tu lado,
                      <br />
-                     festejar este momento y cantarte el feliz cumpleaños, Sin
+                     festejar este momento y cantarte el FELIZ CUMPLEAÑOS 🎂,
                      <br />
-                     embargo vienen días donde nos vamos a encontrar, Nos
+                     Sin embargo vienen días donde nos vamos a encontrar,
                      <br />
-                     daremos un fuerte abrazo y nos iremos a viajar, ya sea por
+                     Nos daremos un fuerte abrazo y nos iremos a viajar ✈️,
                      <br />
-                     Toronto, Montreal, Colombia, o el mundo entero, No importa
+                     ya sea por 🇨🇦 Toronto, Montreal, 🇨🇴 Colombia, o el 🌎 mundo entero,
                      <br />
-                     donde sea el destino, se que vamos a llegar a tiempo.
+                     No importa donde sea el destino, se que vamos a llegar a
+                     tiempo.
                   </p>
 
                   <p className="my-4">
                      <br />
-                     Así que espero Churrita que hoy estemos felices, Porque hoy
+                     Así que espero ❤️ Churrita que hoy estemos felices,
                      <br />
-                     brindo por este día y el día en que naciste....
+                     Porque hoy 🥂 brindo por este día y el día en que naciste....
                   </p>
                </div>
             ) : null}
