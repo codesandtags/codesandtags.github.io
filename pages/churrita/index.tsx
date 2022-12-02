@@ -189,16 +189,18 @@ export default function Home() {
                      Porque hoy 🥂 brindo por este día y el día en que
                      naciste....
                   </p>
+
+                  <div className="flex items-center justify-center">
+                  <Image
+                     className="my-8"
+                     src="/images/churrita-nala.png"
+                     width={300}
+                     height={300}
+                     alt="Al infinito y mas alla"
+                  />
+                  </div>
                </div>
             ) : null}
-
-            <Image
-              className="my-8"
-               src="/images/churrita-nala.png"
-               width={300}
-               height={300}
-               alt="Al infinito y mas alla"
-            />
          </div>
       </div>
    );
