@@ -23,7 +23,7 @@ export default function Home() {
    return (
       <div className={styles.container}>
          <Head>
-            <title>codesandtags | curiosidad intensa por la programación</title>
+            <title>Codes and Tags | Churrita</title>
             <meta
                name="description"
                content="Tutoriales de programación, experimentos de código y curiosidades del mundo del software"
