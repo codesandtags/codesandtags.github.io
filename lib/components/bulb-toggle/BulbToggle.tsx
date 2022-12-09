@@ -12,9 +12,9 @@ const getCurrentTheme = () => {
         return LIGHT_THEME
     }
 
-    const matchesDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // const matchesDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    return matchesDarkTheme ? DARK_THEME : LIGHT_THEME;
+    return DARK_THEME;
 }
 
 const toggleDarkLightMode = () => {
