@@ -22,13 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
             });
         `}
          </Script>
-         <nav className="flex flex-row flex-end justify-end">
+         <nav className="container mx-auto flex flex-row flex-end justify-end">
             <BulbToggle />
          </nav>
          <main className={styles.main}>
             <Component {...pageProps} />
          </main>
-         <Footer />
+         <Footer/>
       </ThemeContext.Provider>
    );
 }

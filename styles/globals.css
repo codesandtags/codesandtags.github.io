@@ -14,8 +14,10 @@ body {
 :root,
 :root.light {
   --font-color: black;
-  --background-color: #eaeaea;
+  --background-color: #f6f6f6;
   --border-color: #999999;
+  --room-image: url(/images/bg-light-room.png);
+  --room-image-height: 510px;
 }
 
 /* automatic dark mode */
@@ -25,15 +27,17 @@ body {
     --font-color: white;
     --background-color: black;
     --border-color: #444444;
+    --room-image: url(/images/bg-dark-room.png);
   }
 }
 
 /* manual dark mode 
 /* ❗️ keep the rules in sync with the automatic dark mode above! */
 :root.dark {
-  --some-value: white;
-  --some-other-value: black;
+  --font-color: white;
+  --background-color: black;
   --border-color: #444444;
+  --room-image: url(/images/bg-dark-room.png);
 }
 
 /* use the variables */
@@ -79,4 +83,24 @@ body {
   width: var(--icon-size);
   height: var(--icon-size);
   background-size: cover;
+}
+
+.room-wall {
+  transition: background-image 0.2s ease;
+  background-image: var(--room-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: var(--room-image-height);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media only screen and (min-width: 800px) {
+  .room-wall {
+    
+  }
 }
