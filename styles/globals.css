@@ -47,19 +47,31 @@ body {
 * icons
 **/
 .icon-youtube {
-  background-image: url(/images/icon-youtube.svg);
+  background-image: url(/images/icons/icon-youtube.svg);
 }
 
 .icon-twitter {
-  background-image: url(/images/icon-twitter.svg);
+  background-image: url(/images/icons/icon-twitter.svg);
 }
 
 .icon-linkedin {
-  background-image: url(/images/icon-linkedin.svg);
+  background-image: url(/images/icons/icon-linkedin.svg);
 }
 
 .icon-instagram {
-  background-image: url(/images/icon-instagram.svg);
+  background-image: url(/images/icons/icon-instagram.svg);
+}
+
+.icon-tiktok {
+  background-image: url(/images/icons/icon-tiktok.svg);
+}
+
+.icon-twitch {
+  background-image: url(/images/icons/icon-twitch.svg);
+}
+
+.icon-github {
+  background-image: url(/images/icons/icon-github.svg);
 }
 
 .icon {
