@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { ThemeContext, themes } from "../lib/themes/ThemeContext";
 import BulbToggle from "../lib/components/bulb-toggle/BulbToggle";
 import Footer from "../lib/components/Footer";
 import styles from "../styles/Home.module.css";
@@ -8,7 +7,7 @@ import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
    return (
-      <ThemeContext.Provider value={themes.dark}>
+      <>
          <Script
             strategy="lazyOnload"
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -28,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
          <main className={styles.main}>
             <Component {...pageProps} />
          </main>
-         <Footer/>
-      </ThemeContext.Provider>
+         <Footer />
+      </>
    );
 }
