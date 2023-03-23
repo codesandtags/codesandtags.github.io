@@ -1,40 +1,51 @@
 import Head from "next/head";
 import Image from "next/image";
-import Script from "next/script";
-import styles from "../styles/Home.module.css";
-import sayHello from "../lib/utils/console";
+import sayHello from "../src/utils/console";
 
-import MetaTags from "../lib/components/MetaTags";
+import MetaTags from "../src/components/MetaTags";
+import Infinite from "../src/components/infinite/Infinite";
+import Typewriter from "typewriter-effect";
+import Footer from "../src/components/Footer";
 
 sayHello();
 
 export default function Home() {
-  return (
-    <div className="container mx-auto">
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-      />
-      <Script strategy="lazyOnload">
-        {`  window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-            page_path: window.location.pathname,
-            });
-        `}
-      </Script>
+   return (
+      <div className="container mx-auto">
+         <Head>
+            <title>
+               Codes and Tags | Curiosidad intensa por la programación
+            </title>
+            <link rel="icon" href="/favicon.ico" />
+            <MetaTags />
+         </Head>
 
-      <Head>
-        <title>
-          Codes and Tags | Curiosidad intensa por la programación
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-        <MetaTags />
-      </Head>
-
-      <div className="container">
+         <div className="container flex items-center justify-center flex-col gap-8">
+            <div className="w-full flex items-center justify-center h-36 text-3xl">
+               <Typewriter
+                  options={{
+                     strings: [
+                        "Mientras la vida pase",
+                        "Estaré programando...",
+                        "Mientras esté programando",
+                        "Seguiré viviendo ♥️...",
+                     ],
+                     autoStart: true,
+                     loop: false,
+                  }}
+               />
+            </div>
+            <Infinite />
+            <div className="w-full flex items-center justify-center h-36 text-3xl">
+               <Image
+                  src="/images/logo.png"
+                  width={150}
+                  height={150}
+                  alt={"logo"}
+               />
+            </div>
+         </div>
+         <Footer />
       </div>
-    </div>
-  )
+   );
 }

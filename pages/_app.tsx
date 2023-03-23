@@ -1,7 +1,9 @@
 import "../styles/globals.css";
+import "../src/components/infinite/Infinite.css";
+
 import type { AppProps } from "next/app";
-import BulbToggle from "../lib/components/bulb-toggle/BulbToggle";
-import Footer from "../lib/components/Footer";
+import BulbToggle from "../src/components/bulb-toggle/BulbToggle";
+import Footer from "../src/components/Footer";
 import styles from "../styles/Home.module.css";
 import Script from "next/script";
 
@@ -21,13 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
             });
         `}
          </Script>
-         <nav className="container mx-auto flex flex-row flex-end justify-end">
-            <BulbToggle />
-         </nav>
+         <nav className="container mx-auto flex flex-row flex-end justify-end"></nav>
          <main className={styles.main}>
             <Component {...pageProps} />
          </main>
-         <Footer />
       </>
    );
 }
