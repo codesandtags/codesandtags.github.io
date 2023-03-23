@@ -22,7 +22,7 @@ export default function Home() {
    }
 
    useEffect(() => {
-      const confettiSettings = { target: "my-canvas", start_from_edge: true};
+      const confettiSettings = { target: "my-canvas", start_from_edge: true };
       const confetti = new ConfettiGenerator(confettiSettings);
       confetti.render();
 
@@ -40,12 +40,15 @@ export default function Home() {
             <link rel="icon" href="/favicon.ico" />
          </Head>
 
-         <canvas id="my-canvas" style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          zIndex: -1
-         }} ></canvas>
+         <canvas
+            id="my-canvas"
+            style={{
+               position: "absolute",
+               top: 0,
+               left: 0,
+               zIndex: -1,
+            }}
+         ></canvas>
          <div
             className="w-full md:w-1/2 flex flex-col justify-center items-center	content-center mx-auto py-8"
             id="churrita"
