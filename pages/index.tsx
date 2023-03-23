@@ -21,17 +21,18 @@ export default function Home() {
          </Head>
 
          <div className="container flex items-center justify-center flex-col gap-8">
-            <div className="w-full flex items-center justify-center h-36 text-3xl">
+            <div className="w-full flex items-center justify-center h-36 text-2xl">
                <Typewriter
                   options={{
                      strings: [
                         "Mientras la vida pase",
                         "Estaré programando...",
                         "Mientras esté programando",
-                        "Seguiré viviendo ♥️...",
+                        "Seguiré viviendo 👽",
                      ],
                      autoStart: true,
                      loop: false,
+                     deleteSpeed: 10,
                   }}
                />
             </div>
