@@ -1,14 +1,10 @@
-import styles from "../../styles/Home.module.css";
-import Image from "next/image";
+import Infinite from "./infinite/Infinite";
 
 export default function Footer() {
    return (
       <footer className="container mx-auto flex flex-col items-center">
          <div className="container">
             <div className="w-full flex flex-col justify-center items-center content-center mx-auto py-4">
-               <h1 className="text-normal px-4">
-                  Curiosidad Intensa por la programación 🔥
-               </h1>
                <ul className="flex flex-row gap-3 mt-4 mb-6">
                   <a href="https://youtube.com/@codesandtags" target="_blank">
                      <div className="icon icon-youtube"></div>
@@ -40,6 +36,7 @@ export default function Footer() {
                </ul>
             </div>
          </div>
+         <Infinite />
       </footer>
    );
 }
