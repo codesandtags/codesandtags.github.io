@@ -1,124 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Roboto:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html,
 body {
-   padding: 0;
-   margin: 0;
-   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: "Bebas Neue", Roboto, "Montserrat", sans-serif;
 }
 
 /** Brand colors ***/
 :root,
 :root.light {
-   --font-color: black;
-   --background-color: #e8e3e0;
-   --border-color: #999999;
-   --room-image: url(/images/bg-light-room.png);
-   --room-image-height: 510px;
+  --font-color: black;
+  --background-color: #e8e3e0;
+  --border-color: #999999;
+  --room-image: url(/images/bg-light-room.png);
+  --room-image-height: 510px;
 
-   --cool-background: linear-gradient(
-      45deg,
-      rgba(131, 58, 180, 1) 0%,
-      rgba(253, 29, 29, 1) 50%,
-      rgba(252, 176, 69, 1) 100%
-   );
-   --text-color: #fff;
-   --cursor-color: #eee;
-   --characters: 15ch;
-   --characters-steps: 15;
+  --cool-background: linear-gradient(
+    45deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  --text-color: #fff;
+  --cursor-color: #eee;
+  --characters: 15ch;
+  --characters-steps: 15;
 }
 
 /* automatic dark mode */
 /* ❗️ keep the rules in sync with the manual dark mode below! */
 @media (prefers-color-scheme: dark) {
-   :root {
-      --font-color: white;
-      --background-color: black;
-      --border-color: #444444;
-      --room-image: url(/images/bg-dark-room.png);
-   }
+  :root {
+    --font-color: white;
+    --background-color: black;
+    --border-color: #444444;
+    --room-image: url(/images/bg-dark-room.png);
+  }
 }
 
 /* manual dark mode 
 /* ❗️ keep the rules in sync with the automatic dark mode above! */
 :root.dark {
-   --font-color: white;
-   --background-color: black;
-   --border-color: #444444;
-   --room-image: url(/images/bg-dark-room.png);
+  --font-color: white;
+  --background-color: black;
+  --border-color: #444444;
+  --room-image: url(/images/bg-dark-room.png);
 }
 
 /* use the variables */
 body {
-   color: var(--font-color);
-   background-color: var(--background-color);
-   transition: background-color 0.2s ease-in, color 0.2s ease-in;
+  color: var(--font-color);
+  background-color: var(--background-color);
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
 }
 
 /**
 * icons
 **/
 .icon-youtube {
-   background-image: url(/images/icons/icon-youtube.svg);
+  background-image: url(/images/icons/icon-youtube.svg);
 }
 
 .icon-twitter {
-   background-image: url(/images/icons/icon-twitter.svg);
+  background-image: url(/images/icons/icon-twitter.svg);
 }
 
 .icon-linkedin {
-   background-image: url(/images/icons/icon-linkedin.svg);
+  background-image: url(/images/icons/icon-linkedin.svg);
 }
 
 .icon-instagram {
-   background-image: url(/images/icons/icon-instagram.svg);
+  background-image: url(/images/icons/icon-instagram.svg);
 }
 
 .icon-tiktok {
-   background-image: url(/images/icons/icon-tiktok.svg);
+  background-image: url(/images/icons/icon-tiktok.svg);
 }
 
 .icon-twitch {
-   background-image: url(/images/icons/icon-twitch.svg);
+  background-image: url(/images/icons/icon-twitch.svg);
 }
 
 .icon-github {
-   background-image: url(/images/icons/icon-github.svg);
+  background-image: url(/images/icons/icon-github.svg);
 }
 
 .icon {
-   --icon-size: 25px;
-   width: var(--icon-size);
-   height: var(--icon-size);
-   background-size: cover;
+  --icon-size: 25px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-size: cover;
 }
 
 .room-wall {
-   transition: background-image 0.2s ease;
-   background-image: var(--room-image);
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: top;
-   width: 100%;
-   height: var(--room-image-height);
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   z-index: -1;
+  transition: background-image 0.2s ease;
+  background-image: var(--room-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: var(--room-image-height);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .typewriter-effect {
-   color: white;
-   border-right: 10px solid var(--cursor-color);
-   text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
+  color: white;
+  border-right: 10px solid var(--cursor-color);
+  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
 
-   /* Acá está la magia 🦄 */
-   width: 0;
-   white-space: nowrap;
-   overflow: hidden;
-   animation: typewriter 2s steps(var(--characters-steps)) 2s forwards,
-      blink 0.9s infinite;
+  /* Acá está la magia 🦄 */
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typewriter 2s steps(var(--characters-steps)) 2s forwards,
+    blink 0.9s infinite;
 }
