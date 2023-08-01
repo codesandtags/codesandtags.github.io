@@ -28,8 +28,10 @@ body {
   );
   --text-color: #fff;
   --cursor-color: #eee;
-  --characters: 15ch;
-  --characters-steps: 15;
+}
+
+*::selection {
+  background: #e8913f;
 }
 
 /* automatic dark mode */
@@ -51,12 +53,6 @@ body {
   --border-color: #444444;
   --room-image: url(/images/bg-dark-room.png);
 }
-
-/**
-
-
-
-**/
 
 /* use the variables */
 body::before {
@@ -109,7 +105,13 @@ body {
 }
 
 .icon-github {
-  background-image: url(/images/icons/icon-github.svg);
+  background-image: url(/images/icons/icon-github2.svg);
+  background-color: white;
+  border-radius: 50%;
+}
+
+.icon-blog {
+  background-image: url(/images/icons/icon-blog.svg);
 }
 
 .icon {
@@ -119,44 +121,6 @@ body {
   background-size: cover;
 }
 
-.room-wall {
-  transition: background-image 0.2s ease;
-  background-image: var(--room-image);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  width: 100%;
-  height: var(--room-image-height);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
-
-.typewriter-effect {
-  color: white;
-  border-right: 10px solid var(--cursor-color);
-  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
-
-  /* Acá está la magia 🦄 */
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typewriter 2s steps(var(--characters-steps)) 2s forwards,
-    blink 0.9s infinite;
-}
-
-@keyframes color-transition {
-  0% {
-    background: #000;
-  }
-  33% {
-    background: #2d6e0a;
-  }
-  66% {
-    background: #b1186a;
-  }
-  100% {
-    background: #e8913f;
-  }
+.icon:hover {
+  transform: scale(1.2);
 }

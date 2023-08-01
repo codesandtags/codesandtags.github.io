@@ -13,7 +13,7 @@ export default function Home() {
       <div className="container-image"></div>
       <div className="container mx-auto h-screen backdrop-blur-sm">
         <Head>
-          <title>Codesand Tags | Curiosidad intensa por la programación</title>
+          <title>Codes and Tags | Curiosidad intensa por la programación</title>
           <link rel="icon" href="/favicon.ico" />
           <MetaTags />
         </Head>
