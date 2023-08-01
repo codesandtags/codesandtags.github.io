@@ -2,7 +2,7 @@ import Infinite from "./infinite/Infinite";
 
 export default function Footer() {
   return (
-    <footer className="mx-auto px-5 rounded-md drop-shadow-lg backdrop-blur-sm bg-slate-800">
+    <footer className="mx-auto px-5 rounded-md drop-shadow-lg backdrop-blur-sm bg-slate-50">
       <div className="w-full flex flex-col justify-center items-center content-center mx-auto py-4">
         <ul className="flex flex-row gap-3">
           <a
