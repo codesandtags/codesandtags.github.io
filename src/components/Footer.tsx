@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="icon icon-instagram"></div>
           </a>
           <a
-            href="https://ca.linkedin.com/company/codesandtags"
+            href="https://linkedin.com/company/codesandtags"
             target="_blank"
             title="Linkedin"
             aria-label="Linkedin"
