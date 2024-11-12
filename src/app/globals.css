@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  /* Light Theme */
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 20 14% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 5%;
+    --primary: 30 95% 55%; /* Warm Orange-Yellow */
+    --primary-foreground: 60 8% 98%;
+    --secondary: 60 4% 96%; /* Light Grey */
+    --secondary-foreground: 20 14% 5%;
+    --muted: 60 4% 96%;
+    --muted-foreground: 20 14% 5%;
+    --accent: 20 90% 50%; /* Orange-Red */
+    --accent-foreground: 60 8% 98%;
+    --destructive: 0 80% 60%; /* Bright Red */
+    --destructive-foreground: 60 8% 98%;
+    --border: 20 5% 85%;
+    --input: 20 5% 85%;
+    --ring: 30 95% 55%;
+    --radius: 0.5rem;
+
+    /* Chart Colors */
+    --chart-1: 12 76% 61%; /* Deep Orange */
+    --chart-2: 173 58% 39%; /* Greenish Teal */
+    --chart-3: 197 37% 24%; /* Muted Blue */
+    --chart-4: 43 74% 66%; /* Soft Yellow */
+    --chart-5: 27 87% 67%; /* Orange */
+  }
+
+  /* Dark Theme */
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 60 8% 98%;
+    --card: 220 20% 8%;
+    --card-foreground: 60 8% 98%;
+    --popover: 220 20% 8%;
+    --popover-foreground: 60 8% 98%;
+    --primary: 30 95% 55%; /* Warm Orange-Yellow */
+    --primary-foreground: 20 14% 5%;
+    --secondary: 220 10% 20%; /* Dark Grey */
+    --secondary-foreground: 60 8% 98%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 24 6% 65%;
+    --accent: 20 90% 50%; /* Orange-Red */
+    --accent-foreground: 60 8% 98%;
+    --destructive: 0 75% 60%; /* Bright Red */
+    --destructive-foreground: 60 8% 98%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 30 95% 55%;
+    --radius: 0.5rem;
+
+    /* Chart Colors */
+    --chart-1: 220 70% 50%; /* Bright Blue */
+    --chart-2: 160 60% 45%; /* Greenish-Blue */
+    --chart-3: 30 80% 55%; /* Bright Orange */
+    --chart-4: 280 65% 60%; /* Purple */
+    --chart-5: 340 75% 55%; /* Pink */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
