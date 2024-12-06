@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Github } from 'lucide-react'
 // import { useTheme } from './ThemeProvider'
 import { Badge } from '@/components/ui/badge'
+import { MenuItem } from '@/types/menu'
 
 // Define the menu items array
 const menuItems: MenuItem[] = [
