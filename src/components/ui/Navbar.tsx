@@ -1,13 +1,38 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client'
+import React from 'react'
+import Image from 'next/image'
 
-import { Github, Moon, Sun } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
-import { Badge } from "@/components/ui/badge";
+import { Github, Moon, Sun } from 'lucide-react'
+// import { useTheme } from './ThemeProvider'
+import { Badge } from '@/components/ui/badge'
+
+// Define the menu items array
+const menuItems: MenuItem[] = [
+  {
+    name: 'Retos',
+    href: '/challenges',
+    isVisible: false,
+  },
+  {
+    name: 'Cursos',
+    href: '/courses',
+    isVisible: false,
+  },
+  {
+    name: 'Blog',
+    href: '/blog',
+    isVisible: true,
+  },
+  {
+    name: 'GitHub',
+    href: '#',
+    icon: <Github className="h-5 w-5" />,
+    isVisible: false,
+  },
+]
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
+  // const { theme, toggleTheme } = useTheme()
 
   return (
     <nav className="fixed top-0 w-full border-b border-border bg-background/80 backdrop-blur-sm z-50">
@@ -26,31 +51,21 @@ export default function Navbar() {
             </Badge>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              Retos
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              Cursos
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              Blog
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github className="h-5 w-5" />
-              GitHub
-            </a>
+            {menuItems
+              .filter((item) => item.isVisible)
+              .map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors ${
+                    item.isDisabled ? 'opacity-50 pointer-events-none' : ''
+                  }`}
+                >
+                  {item.icon && item.icon}
+                  {item.name}
+                </a>
+              ))}
+            {/* Hide theme toggle for now
             <button
               onClick={toggleTheme}
               className="p-2 text-muted-foreground hover:text-primary transition-colors"
@@ -61,10 +76,10 @@ export default function Navbar() {
               ) : (
                 <Moon className="h-5 w-5" />
               )}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
     </nav>
-  );
+  )
 }
