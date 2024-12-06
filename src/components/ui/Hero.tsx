@@ -1,8 +1,7 @@
 'use client'
 import React from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Youtube } from 'lucide-react'
-import { ArrowRight } from 'lucide-react'
+import { Github, Linkedin, Youtube } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
@@ -32,17 +31,19 @@ export default function Hero() {
       </div>
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <img
+          <Image
             src="/img/profile-edwin.png"
             alt="Edwin Torres"
-            className="mx-auto mb-8 rounded-full w-48 h-48 object-cover"
+            width={192}
+            height={192}
+            className="mx-auto mb-8 rounded-full object-cover"
           />
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
             Edwin Torres
           </h1>
           <p className="mt-6 mb-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-            👋 Hi there! I'm a{' '}
+            👋 Hi there! I am a{' '}
             <strong className="text-foreground">lifelong-learner</strong>,
             software engineer, and advocate for ultralearning. My expertise
             spans <strong className="text-foreground">Web Development</strong>,{' '}

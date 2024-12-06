@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { Github, Moon, Sun } from 'lucide-react'
+import { Github } from 'lucide-react'
 // import { useTheme } from './ThemeProvider'
 import { Badge } from '@/components/ui/badge'
 
