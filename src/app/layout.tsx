@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+
 import { ThemeProvider } from '@/components/ui/ThemeProvider'
 import { Inter } from 'next/font/google'
+
+import Navbar from '@/components/ui/Navbar'
 
 import './globals.css'
 
@@ -31,7 +34,12 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <div className="min-h-screen bg-background text-foreground pt-12">
+            <Navbar />
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
