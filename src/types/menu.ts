@@ -4,4 +4,5 @@ export type MenuItem = {
   icon?: React.ReactNode
   isVisible?: boolean
   isDisabled?: boolean
+  isExternal?: boolean
 }
