@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import * as LucideIcons from 'lucide-react'
-import type { Project, ProjectLink } from '@/types/project'
+import type { Project } from '@/types/project'
 
 // Helper function to dynamically get Lucide icons
 const getIcon = (iconName: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Icon = (LucideIcons as any)[iconName] || LucideIcons.Link
   return Icon
 }
