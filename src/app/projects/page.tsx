@@ -16,8 +16,8 @@ const projects: Project[] = [
     description:
       'Open-source Chrome extension designed to help you enable Dark Mode or at least, invert colors to release your eyes from the white light of the screen.',
     image:
-      'https://raw.githubusercontent.com/codesandtags/dark-mode-extension/refs/heads/main/assets/example-dark.png',
-    keywords: ['Google Chrome Extension', 'JavaScript', 'CSS', 'HTML'],
+      'https://raw.githubusercontent.com/codesandtags/dark-mode-extension/refs/heads/main/assets/small-promo-tile.png',
+    keywords: ['Google Chrome Extension', 'JavaScript'],
     links: [
       {
         icon: 'Github',
@@ -28,6 +28,26 @@ const projects: Project[] = [
         icon: 'ExternalLink',
         name: 'Live Demo',
         link: 'https://www.codesandtags.io/dark-mode-extension/',
+      },
+    ],
+  },
+  {
+    title: 'Frontend Resources',
+    description:
+      '🔥A curated list of awesome useful resources for Front-End. This list has been updated through my years of experience as Front-End.',
+    image:
+      'https://raw.githubusercontent.com/codesandtags/frontend-resources/refs/heads/main/public/images/frontend-resources-showcase.png',
+    keywords: ['Documentation', 'Frontend'],
+    links: [
+      {
+        icon: 'Github',
+        name: 'GitHub',
+        link: 'https://github.com/codesandtags/frontend-resources',
+      },
+      {
+        icon: 'ExternalLink',
+        name: 'Live Demo',
+        link: 'https://frontend-resources-demo.vercel.app/',
       },
     ],
   },
@@ -54,9 +74,9 @@ export default function ProjectsPage() {
               />
             </div>
 
-            <div className="p-6">
+            <div className="p-6 flex flex-col">
               <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
                 {project.description}
               </p>
 
@@ -70,7 +90,6 @@ export default function ProjectsPage() {
                   </span>
                 ))}
               </div>
-
               <div className="flex gap-4">
                 {project.links.map((link, idx) => {
                   const Icon = getIcon(link.icon)
@@ -80,7 +99,7 @@ export default function ProjectsPage() {
                       href={link.link}
                       target="_blank"
                       title={link.name}
-                      className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                      className="text-gray-600 hover:text-primary transition-colors dark:text-gray-300 dark:hover:text-primary"
                     >
                       <Icon className="h-6 w-6" />
                     </Link>
