@@ -1,10 +1,8 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 
 import { Github, Menu, X } from 'lucide-react'
-// import { useTheme } from './ThemeProvider'
-import { Badge } from '@/components/ui/badge'
 import { MenuItem } from '@/types/menu'
 import Link from 'next/link'
 import {
