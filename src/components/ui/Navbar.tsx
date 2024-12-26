@@ -2,11 +2,15 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { Github } from 'lucide-react'
-// import { useTheme } from './ThemeProvider'
-import { Badge } from '@/components/ui/badge'
+import { Github, Menu, X } from 'lucide-react'
 import { MenuItem } from '@/types/menu'
 import Link from 'next/link'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from './navigation-menu'
 
 // Define the menu items array
 const menuItems: MenuItem[] = [
@@ -33,6 +37,12 @@ const menuItems: MenuItem[] = [
     isExternal: false,
   },
   {
+    name: 'What I use',
+    href: '/what-i-use',
+    isVisible: true,
+    isExternal: false,
+  },
+  {
     name: 'GitHub',
     href: '#',
     icon: <Github className="h-5 w-5" />,
@@ -41,67 +51,75 @@ const menuItems: MenuItem[] = [
 ]
 
 export default function Navbar() {
-  // const { theme, toggleTheme } = useTheme()
+  // State to toggle mobile menu
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
   return (
-    <nav className="fixed top-0 w-full border-b border-border bg-background/80 backdrop-blur-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/">
-            <div className="flex items-center">
-              <Image
-                src="/img/codesandtags.png"
-                alt="Codes and Tags"
-                width={32}
-                height={32}
-              />
-              <span className="ml-2 text-xl font-bold">Codes and Tags</span>
-              <Badge variant="secondary" className="ml-2 text-xs">
-                BETA
-              </Badge>
-            </div>
+    <div className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-sm z-50">
+      <nav className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4">
+        {/* Logo or site title (optional) */}
+        <div className="text-xl font-bold">
+          <Link href="/" className="flex justify-center items-center gap-2">
+            <Image
+              src="/img/codesandtags.png"
+              alt="logo"
+              width={40}
+              height={40}
+            />
+            Codes and Tags
           </Link>
-          <div className="hidden md:flex md:items-center md:space-x-8">
+        </div>
+
+        {/* Desktop navigation (visible at md+ breakpoints) */}
+        <NavigationMenu className="hidden md:block">
+          <NavigationMenuList className="gap-4">
             {menuItems
               .filter((item) => item.isVisible)
-              .map((item) =>
-                item.isExternal ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {item.icon && item.icon}
-                    {!item.icon && item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {item.icon && item.icon}
-                    {!item.icon && item.name}
+              .map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  <Link href={item.href} legacyBehavior passHref>
+                    <NavigationMenuLink className="cursor-pointer hover:text-primary">
+                      {item.icon ? item.icon : item.name}
+                    </NavigationMenuLink>
                   </Link>
-                )
-              )}
-            {/* Hide theme toggle for now
-            <button
-              onClick={toggleTheme}
-              className="p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </button> */}
-          </div>
+                </NavigationMenuItem>
+              ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Hamburger button (visible on mobile) */}
+        <button
+          className="md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+      </nav>
+
+      {/* Mobile menu (dropdown) - Only shown if mobileMenuOpen is true */}
+      {mobileMenuOpen && (
+        <div className="border-b md:hidden">
+          <nav className="mx-auto flex flex-col space-y-2 px-4 py-2">
+            {menuItems
+              .filter((item) => item.isVisible)
+              .map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="p-2 hover:bg-muted"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.icon ? item.icon : item.name}
+                </Link>
+              ))}
+          </nav>
         </div>
-      </div>
-    </nav>
+      )}
+    </div>
   )
 }
