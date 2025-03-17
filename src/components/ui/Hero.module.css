@@ -1,0 +1,29 @@
+.beforeGradient:hover {
+  --circle-width: 150px;
+  --circle-height: 150px;
+  opacity: 0;
+  transition: all 400ms ease-out;
+}
+
+.beforeGradient:hover {
+  opacity: 0.9;
+}
+
+.beforeGradient::before {
+  top: 0;
+  left: 0;
+  content: '';
+  position: absolute;
+  height: var(--circle-width);
+  width: var(--circle-height);
+  border-radius: 9999px;
+  background-color: hsl(var(--primary));
+  /* background-color: white; */
+  opacity: 0.2;
+  filter: blur(50px);
+  transition: all 0ms ease-out;
+  transform: translate(
+    calc(var(--mouse-x) - var(--circle-width) / 2),
+    calc(var(--mouse-y) - var(--circle-height) / 2)
+  );
+}

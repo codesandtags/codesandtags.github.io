@@ -3,32 +3,28 @@ import React from 'react'
 import { Github, Linkedin, Youtube } from 'lucide-react'
 import Image from 'next/image'
 
+import styles from './Hero.module.css'
+
 export default function Hero() {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
     setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: e.clientX,
+      y: e.clientY,
     })
   }
 
   return (
     <div
-      className="relative pt-48 pb-20 sm:pt-56"
+      className={`relative pt-48 pb-20 sm:pt-56 ${styles.beforeGradient}`}
       onMouseMove={handleMouseMove}
+      style={{
+        ['--mouse-x']: `${mousePosition.x}px`,
+        ['--mouse-y']: `${mousePosition.y}px`,
+      }}
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute h-[350px] w-[350px] rounded-full bg-primary opacity-20 blur-3xl transition-all duration-0 ease-out"
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`,
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-      </div>
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <Image
@@ -47,6 +43,7 @@ export default function Hero() {
             <strong className="text-foreground">lifelong-learner</strong>,
             software engineer, and advocate for ultralearning. My expertise
             spans <strong className="text-foreground">Web Development</strong>,{' '}
+            and{' '}
             <strong className="text-foreground">Software Architecture</strong>.
           </p>
           <div className="flex justify-center space-x-4">
