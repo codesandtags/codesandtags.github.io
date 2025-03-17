@@ -9,7 +9,6 @@ export default function Hero() {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
     setMousePosition({
       x: e.clientX,
       y: e.clientY,
@@ -20,10 +19,13 @@ export default function Hero() {
     <div
       className={`relative pt-48 pb-20 sm:pt-56 ${styles.beforeGradient}`}
       onMouseMove={handleMouseMove}
-      style={{
-        ['--mouse-x']: `${mousePosition.x}px`,
-        ['--mouse-y']: `${mousePosition.y}px`,
-      }}
+      // eslint-disable-next-line
+      style={
+        {
+          '--mouse-x': `${mousePosition.x}px`,
+          '--mouse-y': `${mousePosition.y}px`,
+        } as React.CSSProperties
+      }
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
