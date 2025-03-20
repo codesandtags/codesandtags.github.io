@@ -23,7 +23,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Codes and Tags',
+  title: 'codesandtags',
   description: 'Domina el desarrollo Frontend',
 }
 

@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { Github, Menu, X } from 'lucide-react'
 import { MenuItem } from '@/types/menu'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -53,6 +55,16 @@ const menuItems: MenuItem[] = [
 export default function Navbar() {
   // State to toggle mobile menu
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const pathname = usePathname()
+
+  // Helper function to check if a link is active
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === href
+    }
+    return pathname.startsWith(href)
+  }
 
   return (
     <div className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-sm z-50">
@@ -63,10 +75,10 @@ export default function Navbar() {
             <Image
               src="/img/codesandtags.png"
               alt="logo"
-              width={40}
-              height={40}
+              width={30}
+              height={30}
             />
-            Codes and Tags
+            codesandtags
           </Link>
         </div>
 
@@ -78,7 +90,17 @@ export default function Navbar() {
               .map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink className="cursor-pointer hover:text-primary">
+                    <NavigationMenuLink
+                      className={`cursor-pointer hover:text-primary relative
+                        after:absolute after:bottom-0 after:left-0 after:h-[1px]
+                        after:w-0 hover:after:w-full after:bg-primary
+                        after:transition-all after:duration-300 after:ease-in-out
+                        ${
+                          isActive(item.href)
+                            ? 'text-primary font-medium after:w-full'
+                            : ''
+                        }`}
+                    >
                       {item.icon ? item.icon : item.name}
                     </NavigationMenuLink>
                   </Link>
@@ -111,7 +133,9 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="p-2 hover:bg-muted"
+                  className={`p-2 hover:bg-muted ${
+                    isActive(item.href) ? 'text-primary font-medium' : ''
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.icon ? item.icon : item.name}
