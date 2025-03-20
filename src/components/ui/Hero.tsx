@@ -30,11 +30,13 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <Image
-            src="/img/profile-edwin.png"
+            src="/img/profile-v1.webp"
             alt="Edwin Torres"
             width={192}
             height={192}
             className="mx-auto mb-8 rounded-full object-cover"
+            placeholder="blur"
+            blurDataURL="/img/profile-v2-blur.webp"
           />
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
