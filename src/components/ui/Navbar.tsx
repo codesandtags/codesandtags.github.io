@@ -92,7 +92,7 @@ export default function Navbar() {
                   <Link href={item.href} legacyBehavior passHref>
                     <NavigationMenuLink
                       className={`cursor-pointer hover:text-primary relative
-                        after:absolute after:bottom-0 after:left-0 after:h-[1px]
+                        after:absolute after:-bottom-2 after:left-0 after:h-[1px]
                         after:w-0 hover:after:w-full after:bg-primary
                         after:transition-all after:duration-300 after:ease-in-out
                         ${
