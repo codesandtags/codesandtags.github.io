@@ -1,9 +1,13 @@
 'use client'
 import React from 'react'
+
+import { Flex, Text, Heading } from '@radix-ui/themes'
+
 import { Github, Linkedin, Youtube } from 'lucide-react'
 import Image from 'next/image'
 
 import styles from './Hero.module.css'
+import Link from 'next/link'
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
@@ -39,37 +43,41 @@ export default function Hero() {
             blurDataURL="/img/profile-v2-blur.webp"
           />
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
+          <Heading as="h1" my={'4'} size={'8'} color="tomato">
             Edwin Torres
-          </h1>
-          <p className="mt-6 mb-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-            👋 Hi there! I am a{' '}
-            <strong className="text-foreground">lifelong-learner</strong>,
-            software engineer, and advocate for ultralearning. My expertise
-            spans <strong className="text-foreground">Web Development</strong>,{' '}
-            and{' '}
-            <strong className="text-foreground">Software Architecture</strong>.
-          </p>
-          <div className="flex justify-center space-x-4">
-            <a
-              href="https://github.com/codesandtags"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/etcode/"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://www.youtube.com/@codesandtags"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              <Youtube size={24} />
-            </a>
-          </div>
+          </Heading>
+          <Flex direction="column" gap="4" className="w-1/2 mx-auto">
+            <Text>
+              👋 Hi there! I am a{' '}
+              <strong className="text-foreground">lifelong-learner</strong>,
+              software engineer, and advocate for ultralearning. My expertise
+              spans <strong className="text-foreground">Web Development</strong>
+              , and{' '}
+              <strong className="text-foreground">Software Architecture</strong>
+              .
+            </Text>
+            <div className="flex justify-center space-x-4">
+              <Link
+                href="https://github.com/codesandtags"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <Github size={24} />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/etcode/"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <Linkedin size={24} />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@codesandtags"
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                <Youtube size={24} />
+              </Link>
+            </div>
+          </Flex>
+
           {/* <div className="mt-10 flex items-center justify-center gap-x-6">
             <button className="rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all">
               Charlemos

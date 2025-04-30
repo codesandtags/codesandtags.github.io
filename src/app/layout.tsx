@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
-import { ThemeProvider } from '@/components/ui/ThemeProvider'
+// import { ThemeProvider } from '@/components/ui/ThemeProvider'
+import { Theme, ThemePanel } from '@radix-ui/themes'
+
 import { Inter } from 'next/font/google'
 
 import Script from 'next/script'
@@ -55,12 +57,13 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
+        <Theme>
           <div className="min-h-screen bg-background text-foreground pt-12">
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
           </div>
-        </ThemeProvider>
+          <ThemePanel />
+        </Theme>
       </body>
     </html>
   )

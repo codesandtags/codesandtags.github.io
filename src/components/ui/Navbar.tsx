@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 
 import { Github, Menu, X } from 'lucide-react'
-import { MenuItem } from '@/types/menu'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,6 +13,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from './navigation-menu'
+
+import { MenuItem } from '@types/menu'
 
 // Define the menu items array
 const menuItems: MenuItem[] = [
@@ -89,7 +91,7 @@ export default function Navbar() {
               .filter((item) => item.isVisible)
               .map((item) => (
                 <NavigationMenuItem key={item.name}>
-                  <Link href={item.href} legacyBehavior passHref>
+                  <Link href={item.href} passHref>
                     <NavigationMenuLink
                       className={`cursor-pointer hover:text-primary relative
                         after:absolute after:-bottom-2 after:left-0 after:h-[1px]
