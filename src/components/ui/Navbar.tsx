@@ -101,8 +101,9 @@ export default function Navbar() {
               .filter((item) => item.isVisible)
               .map((item) => (
                 <NavigationMenuItem key={item.name}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={item.href}
                       className={`cursor-pointer hover:text-primary relative
                         after:absolute after:-bottom-2 after:left-0 after:h-[1px]
                         after:w-0 hover:after:w-full after:bg-primary
@@ -114,8 +115,8 @@ export default function Navbar() {
                         }`}
                     >
                       {item.icon ? item.icon : item.name}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
           </NavigationMenuList>
