@@ -17,7 +17,7 @@ export default function Hero() {
 
   return (
     <div
-      className={`relative pt-48 pb-20 sm:pt-56 ${styles.beforeGradient}`}
+      className={`relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-48 md:pb-24 ${styles.beforeGradient}`}
       onMouseMove={handleMouseMove}
       // eslint-disable-next-line
       style={
@@ -34,15 +34,15 @@ export default function Hero() {
             alt="Edwin Torres"
             width={192}
             height={192}
-            className="mx-auto mb-8 rounded-full object-cover"
+            className="mx-auto mb-6 sm:mb-8 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full object-cover"
             placeholder="blur"
             blurDataURL="/img/profile-v2-blur.webp"
           />
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-primary">
             Edwin Torres
           </h1>
-          <p className="mt-6 mb-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 mb-6 sm:mt-6 sm:mb-8 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 sm:px-0">
             👋 Hi there! I am a{' '}
             <strong className="text-foreground">lifelong-learner</strong>,
             software engineer, and advocate for ultralearning. My expertise
@@ -50,24 +50,27 @@ export default function Hero() {
             and{' '}
             <strong className="text-foreground">Software Architecture</strong>.
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-6 sm:space-x-8">
             <a
               href="https://github.com/codesandtags"
               className="text-foreground hover:text-primary transition-colors"
+              aria-label="GitHub Profile"
             >
-              <Github size={24} />
+              <Github size={20} className="sm:w-6 sm:h-6" />
             </a>
             <a
               href="https://www.linkedin.com/in/etcode/"
               className="text-foreground hover:text-primary transition-colors"
+              aria-label="LinkedIn Profile"
             >
-              <Linkedin size={24} />
+              <Linkedin size={20} className="sm:w-6 sm:h-6" />
             </a>
             <a
               href="https://www.youtube.com/@codesandtags"
               className="text-foreground hover:text-primary transition-colors"
+              aria-label="YouTube Channel"
             >
-              <Youtube size={24} />
+              <Youtube size={20} className="sm:w-6 sm:h-6" />
             </a>
           </div>
           {/* <div className="mt-10 flex items-center justify-center gap-x-6">

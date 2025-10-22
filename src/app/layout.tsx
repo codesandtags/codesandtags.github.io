@@ -56,9 +56,9 @@ export default function RootLayout({
         className={`${poppins.className} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <div className="min-h-screen bg-background text-foreground pt-12">
+          <div className="min-h-screen bg-background text-foreground flex flex-col">
             <Navbar />
-            {children}
+            <main className="flex-1 pt-12">{children}</main>
           </div>
         </ThemeProvider>
       </body>
