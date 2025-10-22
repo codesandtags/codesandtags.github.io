@@ -42,12 +42,12 @@ const projects: Project[] = [
       {
         icon: 'Github',
         name: 'GitHub',
-        link: 'https://github.com/codesandtags/microfrontend-documentation',
+        link: 'https://github.com/codesandtags/frontend-resources',
       },
       {
         icon: 'ExternalLink',
         name: 'Live Demo',
-        link: 'https://www.codesandtags.io/microfrontend-documentation/',
+        link: 'https://frontend-resources-demo.vercel.app/',
       },
     ],
   },
