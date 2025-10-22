@@ -45,6 +45,12 @@ const menuItems: MenuItem[] = [
     isExternal: false,
   },
   {
+    name: 'Talks',
+    href: '/talks',
+    isVisible: true,
+    isExternal: false,
+  },
+  {
     name: 'What I use',
     href: '/what-i-use',
     isVisible: true,

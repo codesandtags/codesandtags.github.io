@@ -42,6 +42,26 @@ const projects: Project[] = [
       {
         icon: 'Github',
         name: 'GitHub',
+        link: 'https://github.com/codesandtags/microfrontend-documentation',
+      },
+      {
+        icon: 'ExternalLink',
+        name: 'Live Demo',
+        link: 'https://www.codesandtags.io/microfrontend-documentation/',
+      },
+    ],
+  },
+  {
+    title: 'Micro Frontends Documentation ',
+    description:
+      'A curated list of awesome and useful resources for Micro FrontEnds, including use cases, Best practices, Frameworks, Strategies, and other resources.',
+    image:
+      'https://www.codesandtags.io/microfrontend-documentation/docs/images/microfrontends-mindmap.png',
+    keywords: ['Documentation', 'Micro Frontends'],
+    links: [
+      {
+        icon: 'Github',
+        name: 'GitHub',
         link: 'https://github.com/codesandtags/frontend-resources',
       },
       {
@@ -51,6 +71,7 @@ const projects: Project[] = [
       },
     ],
   },
+
   // Add more projects here
 ]
 
