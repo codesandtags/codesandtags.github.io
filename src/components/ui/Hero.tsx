@@ -65,14 +65,14 @@ export default function Hero() {
               href="https://calendly.com/codesandtags"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-4 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all text-lg"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all text-md"
             >
               <Calendar className="h-5 w-5" />
               Let's Talk
             </a>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-lg font-medium leading-6 text-foreground hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-md font-medium leading-6 text-foreground hover:text-primary transition-colors"
             >
               View My Work
               <ArrowRight className="h-5 w-5" />
