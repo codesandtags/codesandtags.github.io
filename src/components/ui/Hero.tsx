@@ -1,7 +1,15 @@
 'use client'
 import React from 'react'
-import { Github, Linkedin, Youtube } from 'lucide-react'
+import {
+  Github,
+  Linkedin,
+  Youtube,
+  Mail,
+  ArrowRight,
+  Calendar,
+} from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import styles from './Hero.module.css'
 
@@ -50,6 +58,26 @@ export default function Hero() {
             and{' '}
             <strong className="text-foreground">Software Architecture</strong>.
           </p>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <a
+              href="mailto:codesandtags@gmail.com"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all"
+            >
+              <Mail className="h-4 w-4" />
+              Let's Chat
+            </a>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
+            >
+              View My Projects
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Social Links */}
           <div className="flex justify-center space-x-6 sm:space-x-8">
             <a
               href="https://github.com/codesandtags"
@@ -72,14 +100,21 @@ export default function Hero() {
             >
               <Youtube size={20} className="sm:w-6 sm:h-6" />
             </a>
+            <a
+              href="mailto:codesandtags@gmail.com"
+              className="text-foreground hover:text-primary transition-colors"
+              aria-label="Email Contact"
+            >
+              <Mail size={20} className="sm:w-6 sm:h-6" />
+            </a>
           </div>
-          {/* <div className="mt-10 flex items-center justify-center gap-x-6">
-            <button className="rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all">
-              Charlemos
-            </button>
-            <button className="flex items-center gap-2 text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors">
-              Ver Projectos <ArrowRight className="h-4 w-4" />
-            </button>
+
+          {/* Availability Status */}
+          {/* <div className="mt-8 flex items-center justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-green-100 dark:bg-green-900/20 px-4 py-2 text-sm font-medium text-green-800 dark:text-green-200">
+              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+              Available for freelance work
+            </div>
           </div> */}
         </div>
       </div>
