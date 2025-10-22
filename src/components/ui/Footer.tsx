@@ -1,5 +1,5 @@
 import React from 'react'
-import { Github, Linkedin, Youtube } from 'lucide-react'
+import { Github, Linkedin, Youtube, Calendar } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -28,6 +28,15 @@ export default function Footer() {
               aria-label="YouTube Channel"
             >
               <Youtube size={20} className="sm:w-6 sm:h-6" />
+            </a>
+            <a
+              href="https://calendly.com/codesandtags"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:text-primary transition-colors"
+              aria-label="Book a Meeting"
+            >
+              <Calendar size={20} className="sm:w-6 sm:h-6" />
             </a>
           </div>
 

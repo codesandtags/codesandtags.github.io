@@ -62,18 +62,20 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div className="mt-8 mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <a
-              href="mailto:codesandtags@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all"
+              href="https://calendly.com/codesandtags"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-4 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all text-lg"
             >
-              <Mail className="h-4 w-4" />
-              Let's Chat
+              <Calendar className="h-5 w-5" />
+              Let's Talk
             </a>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-lg font-medium leading-6 text-foreground hover:text-primary transition-colors"
             >
-              View My Projects
-              <ArrowRight className="h-4 w-4" />
+              View My Work
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
 
@@ -109,13 +111,13 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Availability Status */}
-          {/* <div className="mt-8 flex items-center justify-center">
+          {/* Availability Status: Commented until January 2026 */}
+          <div className="mt-8 flex items-center justify-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-green-100 dark:bg-green-900/20 px-4 py-2 text-sm font-medium text-green-800 dark:text-green-200">
               <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-              Available for freelance work
+              Available for talks and consulting
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

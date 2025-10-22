@@ -23,8 +23,78 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'codesandtags',
-  description: 'Domina el desarrollo Frontend',
+  title: {
+    default: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    template: '%s | Edwin Torres - codesandtags',
+  },
+  description:
+    'Edwin Torres is a Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture. Based in Toronto, Canada.',
+  keywords: [
+    'Edwin Torres',
+    'Frontend Developer',
+    'Software Architect',
+    'React Developer',
+    'Next.js',
+    'TypeScript',
+    'Micro Frontend',
+    'HelloFresh',
+    'Scotiabank',
+    'Toronto Developer',
+    'Ultralearning',
+    'Web Development',
+    'codesandtags',
+  ],
+  authors: [{ name: 'Edwin Torres', url: 'https://codesandtags.github.io' }],
+  creator: 'Edwin Torres',
+  publisher: 'codesandtags',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://codesandtags.github.io'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://codesandtags.github.io',
+    title: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    description:
+      'Edwin Torres is a Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.',
+    siteName: 'codesandtags',
+    images: [
+      {
+        url: '/img/profile-v1.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Edwin Torres - Senior Frontend Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    description:
+      'Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript.',
+    images: ['/img/profile-v1.webp'],
+    creator: '@codesandtags',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Replace with actual verification code
+  },
 }
 
 export default function RootLayout({
@@ -51,6 +121,58 @@ export default function RootLayout({
             });
             `}
       </Script>
+
+      {/* Structured Data (JSON-LD) */}
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Edwin Torres',
+            alternateName: 'codesandtags',
+            url: 'https://codesandtags.github.io',
+            image: 'https://codesandtags.github.io/img/profile-v1.webp',
+            description:
+              'Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning',
+            jobTitle: 'Senior Frontend Developer',
+            worksFor: {
+              '@type': 'Organization',
+              name: 'HelloFresh',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Toronto',
+              addressCountry: 'Canada',
+            },
+            sameAs: [
+              'https://github.com/codesandtags',
+              'https://www.linkedin.com/in/etcode/',
+              'https://www.youtube.com/@codesandtags',
+              'https://calendly.com/codesandtags',
+            ],
+            knowsAbout: [
+              'React',
+              'Next.js',
+              'TypeScript',
+              'Micro Frontend Architecture',
+              'Web Development',
+              'Software Architecture',
+              'Ultralearning',
+            ],
+            alumniOf: 'Scotiabank',
+            hasOccupation: {
+              '@type': 'Occupation',
+              name: 'Software Engineer',
+              occupationLocation: {
+                '@type': 'City',
+                name: 'Toronto, Canada',
+              },
+            },
+          }),
+        }}
+      />
 
       <body
         className={`${poppins.className} ${geistMono.variable} antialiased`}

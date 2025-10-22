@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import {
   Monitor,
   Smartphone,
@@ -15,6 +16,34 @@ import {
   Zap,
   ExternalLink,
 } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: "What I Use - Edwin Torres' Development Setup",
+  description:
+    "Discover the tools, hardware, and software that power Edwin Torres' daily workflow. From VS Code extensions to hardware setup, learn about the development environment of a Senior Frontend Developer.",
+  keywords: [
+    'Edwin Torres Tools',
+    'Developer Setup',
+    'VS Code Extensions',
+    'Development Tools',
+    'Frontend Developer Setup',
+    'Software Tools',
+    'Hardware Setup',
+    'Developer Workflow',
+    'codesandtags Tools',
+  ],
+  openGraph: {
+    title: "What I Use - Edwin Torres' Development Setup",
+    description:
+      "Discover the tools, hardware, and software that power Edwin Torres' daily workflow as a Senior Frontend Developer.",
+    url: 'https://codesandtags.github.io/what-i-use',
+  },
+  twitter: {
+    title: "What I Use - Edwin Torres' Development Setup",
+    description:
+      'Tools, hardware, and software setup of a Senior Frontend Developer. VS Code extensions, development tools, and workflow insights.',
+  },
+}
 
 interface ToolItem {
   name: string

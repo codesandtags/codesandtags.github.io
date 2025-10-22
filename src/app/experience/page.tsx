@@ -1,4 +1,32 @@
+import type { Metadata } from 'next'
 import { Briefcase, Calendar, MapPin, Award, Users, Code } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Professional Experience - Edwin Torres',
+  description:
+    "Explore Edwin Torres' professional journey as a Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.",
+  keywords: [
+    'Edwin Torres Experience',
+    'HelloFresh Developer',
+    'Scotiabank Technical Lead',
+    'Software Architect',
+    'Frontend Developer Experience',
+    'Micro Frontend Architecture',
+    'React Developer Portfolio',
+    'Toronto Software Engineer',
+  ],
+  openGraph: {
+    title: 'Professional Experience - Edwin Torres',
+    description:
+      "Explore Edwin Torres' professional journey as a Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect.",
+    url: 'https://codesandtags.github.io/experience',
+  },
+  twitter: {
+    title: 'Professional Experience - Edwin Torres',
+    description:
+      'Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect with expertise in React, Next.js, and Micro Frontend Architecture.',
+  },
+}
 
 interface ExperienceItem {
   title: string
