@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import localFont from 'next/font/local'
 
 import { ThemeProvider } from '@/components/ui/ThemeProvider'
@@ -183,6 +184,7 @@ export default function RootLayout({
             <main className="flex-1 pt-12">{children}</main>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
