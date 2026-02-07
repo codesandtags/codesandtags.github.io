@@ -4,7 +4,7 @@ import { Briefcase, Calendar, MapPin, Award, Users, Code } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Professional Experience - Edwin Torres',
   description:
-    "Explore Edwin Torres' professional journey as a Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.",
+    "Explore Edwin Torres' professional journey as a Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.",
   keywords: [
     'Edwin Torres Experience',
     'HelloFresh Developer',
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Professional Experience - Edwin Torres',
     description:
-      "Explore Edwin Torres' professional journey as a Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect.",
+      "Explore Edwin Torres' professional journey as a Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect.",
     url: 'https://codesandtags.github.io/experience',
   },
   twitter: {
     title: 'Professional Experience - Edwin Torres',
     description:
-      'Senior Frontend Developer at HelloFresh, Technical Lead at Scotiabank, and Software Architect with expertise in React, Next.js, and Micro Frontend Architecture.',
+      'Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect with expertise in React, Next.js, and Micro Frontend Architecture.',
   },
 }
 
@@ -41,13 +41,14 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: 'Senior Frontend Developer',
+    title: 'Senior Software Engineer',
     company: 'HelloFresh',
     location: 'Toronto, Canada',
     period: '2025 - Present',
     description:
-      'Leading frontend development for Factor Form (a sub-brand of Factor - HelloFresH) in US Market.',
+      'Leading software engineering for Factor Form (a sub-brand of Factor - HelloFresH) in US Market.',
     achievements: [
+      'Architected a distributed checkout orchestration layer using Go (Golang) and Next.js, enabling "One-time Purchase" capabilities for Factor Form VMS',
       'Drove end-to-end development and ownership the Trial Box initiative',
       'Successfully deployed 3 critical features to live production environments',
     ],
@@ -134,6 +135,19 @@ const experiences: ExperienceItem[] = [
     type: 'work',
   },
   {
+    title: 'Senior Developer',
+    company: 'Endava',
+    location: 'Bogota, Colombia',
+    period: '2017 - 2017',
+    description:
+      'Worked on the frontend solution for several global Endava clients',
+    achievements: [
+      'Developed and optimized 5+ React + Redux applications for Endava\'s global clients, improving performance by 30% and user satisfaction by 25%.',
+    ],
+    technologies: ['JavaScript', 'React', 'Redux', 'Jest'],
+    type: 'work',
+  },
+  {
     title: 'Senior Software | Frontend Engineer',
     company: 'Prodigious',
     location: 'Bogota, Colombia',
@@ -151,9 +165,10 @@ const experiences: ExperienceItem[] = [
 
 const skills = [
   {
-    category: 'Frontend',
+    category: 'Frontend & Mobile',
     items: [
       'React',
+      'React Native',
       'Next.js',
       'TypeScript',
       'Tailwind CSS',
@@ -169,11 +184,12 @@ const skills = [
     category: 'Backend',
     items: [
       'Node.js',
+      'Go (Golang)',
       'Express',
       'OAuth 2.0',
       'MySQL',
       'PostgreSQL',
-      'MongoDB',
+      'MongoDB'
     ],
   },
   {
