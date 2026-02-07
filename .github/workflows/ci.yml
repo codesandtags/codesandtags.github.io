@@ -37,12 +37,13 @@ jobs:
         # Uncomment this when you have tests.
         # It's better to have the placeholder ready.
         # run: npm run test
+        run: echo "Skipping tests for now..."
 
-      # - name: 🏗️ Dry Run Build
+      - name: 🏗️ Dry Run Build
         # Important: We try to build to see if Next.js explodes.
         # This prevents you from breaking Production in Vercel.
-        # run: npm run build
-        # env:
+        run: npm run build
+        env:
           # Sometimes you need to ignore secret environment variables in CI
           # Or use dummy variables to make the build pass
-          # NEXT_PUBLIC_API_URL: "http://localhost:3000"
+          NEXT_PUBLIC_API_URL: "http://localhost:3000"
