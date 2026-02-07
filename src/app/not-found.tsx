@@ -17,7 +17,7 @@ export default function NotFound() {
       </div>
 
       <p className="text-lg text-muted-foreground max-w-md mb-8">
-        Looks like you're lost in the vastness of <br/>the <span className="text-primary">Codes and Tags</span> universe.
+        Looks like you&apos;re lost in the vastness of <br/>the <span className="text-primary">Codes and Tags</span> universe.
       </p>
 
       <Button asChild size="lg" className="gap-2">

@@ -27,7 +27,7 @@ export default function Hero() {
     <div
       className={`relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-48 md:pb-24 ${styles.beforeGradient}`}
       onMouseMove={handleMouseMove}
-      // eslint-disable-next-line
+
       style={
         {
           '--mouse-x': `${mousePosition.x}px`,
