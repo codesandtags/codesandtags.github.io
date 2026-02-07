@@ -27,7 +27,7 @@ const projects: Project[] = [
       {
         icon: 'ExternalLink',
         name: 'Live Demo',
-        link: 'https://www.codesandtags.io/dark-mode-extension/',
+        link: 'https://chromewebstore.google.com/detail/dark-mode-enabler/jpgjmidladomebfdpanhbeodbmkibdcp',
       },
     ],
   },
@@ -56,7 +56,7 @@ const projects: Project[] = [
     description:
       'A curated list of awesome and useful resources for Micro FrontEnds, including use cases, Best practices, Frameworks, Strategies, and other resources.',
     image:
-      'https://www.codesandtags.io/microfrontend-documentation/docs/images/microfrontends-mindmap.png',
+      'https://raw.githubusercontent.com/codesandtags/microfrontend-documentation/main/docs/images/microfrontends-mindmap.png',
     keywords: ['Documentation', 'Micro Frontends'],
     links: [
       {
@@ -64,10 +64,26 @@ const projects: Project[] = [
         name: 'GitHub',
         link: 'https://github.com/codesandtags/microfrontend-documentation',
       },
+
+    ],
+  },
+  {
+    title: 'Binaural Lab ',
+    description:
+      'High-performance Binaural Beat Generator',
+    image:
+      '/img/portfolio/binaural-lab-example.png',
+    keywords: ['Web Audio API', 'Binaural Beats', 'JavaScript', 'PWA'],
+    links: [
+      {
+        icon: 'Github',
+        name: 'GitHub',
+        link: 'https://github.com/codesandtags/binaurallab',
+      },
       {
         icon: 'ExternalLink',
         name: 'Live Demo',
-        link: 'https://www.codesandtags.io/microfrontend-documentation/',
+        link: 'https://binaurallab.vercel.app/',
       },
     ],
   },

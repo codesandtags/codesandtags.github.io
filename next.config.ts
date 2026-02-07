@@ -3,6 +3,14 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   /* config options here */
   basePath: '',
+  images: {
+    domains: [
+      'raw.githubusercontent.com',
+      'codesandtags.io',
+      'www.codesandtags.io',
+      'codesandtags.github.io'
+    ],
+  },
   async rewrites() {
     return [
       {

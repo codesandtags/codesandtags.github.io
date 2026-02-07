@@ -29,8 +29,8 @@ const menuItems: MenuItem[] = [
   {
     name: 'Blog',
     href: '/blog',
-    isVisible: true,
-    isExternal: true,
+    isVisible: false,
+    isExternal: false,
   },
   {
     name: 'Projects',

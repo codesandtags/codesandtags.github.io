@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'],
     },
-    sitemap: 'https://codesandtags.github.io/sitemap.xml',
+    sitemap: 'https://codesandtags.io/sitemap.xml',
   }
 }
