@@ -10,10 +10,8 @@ import {
   Video,
   Settings,
   BookOpen,
-  CheckSquare,
   FileText,
   Palette,
-  Zap,
   ExternalLink,
 } from 'lucide-react'
 
@@ -349,7 +347,7 @@ export default function WhatIUsePage() {
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             Curious about any of the tools I use or want to discuss
-            alternatives? I'm always happy to share insights about my workflow
+            alternatives? I&apos;m always happy to share insights about my workflow
             and tool choices.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

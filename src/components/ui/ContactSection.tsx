@@ -1,16 +1,16 @@
 import React from 'react'
-import { Mail, MessageCircle, Calendar, MapPin } from 'lucide-react'
+import { Mail, Calendar } from 'lucide-react'
 
 export default function ContactSection() {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
+          <h2 className="text-3xl font-bold mb-4">Let&apos;s Work Together</h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and exciting projects.
-            Whether you're looking for a developer to join your team or need
-            help with a specific project, I'd love to hear from you.
+            I&apos;m always interested in new opportunities and exciting projects.
+            Whether you&apos;re looking for a developer to join your team or need
+            help with a specific project, I&apos;d love to hear from you.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">

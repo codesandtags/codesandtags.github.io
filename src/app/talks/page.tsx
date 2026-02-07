@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Users, ExternalLink, Clock, Mic } from 'lucide-react'
+import { Calendar, MapPin, Users, ExternalLink, Clock } from 'lucide-react'
 
 interface Talk {
   id: string
@@ -88,23 +88,6 @@ const talks: Talk[] = [
     type: 'conference',
   },
 ]
-
-const getTypeIcon = (type: Talk['type']) => {
-  switch (type) {
-    case 'conference':
-      return <Mic className="h-5 w-5" />
-    case 'meetup':
-      return <Users className="h-5 w-5" />
-    case 'workshop':
-      return <Clock className="h-5 w-5" />
-    case 'webinar':
-      return <ExternalLink className="h-5 w-5" />
-    case 'podcast':
-      return <Mic className="h-5 w-5" />
-    default:
-      return <Mic className="h-5 w-5" />
-  }
-}
 
 const getTypeColor = (type: Talk['type']) => {
   switch (type) {
@@ -377,9 +360,9 @@ export default function TalksPage() {
             Interested in Having Me Speak?
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            I'm passionate about sharing knowledge and would love to speak at
-            your event. Whether it's a conference, meetup, workshop, or webinar,
-            I'm always excited to connect with the developer community.
+            I&apos;m passionate about sharing knowledge and would love to speak at
+            your event. Whether it&apos;s a conference, meetup, workshop, or webinar,
+            I&apos;m always excited to connect with the developer community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

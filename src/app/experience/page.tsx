@@ -354,11 +354,11 @@ export default function ExperiencePage() {
 
         {/* Call to Action */}
         <section className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-semibold mb-4">Let's Work Together</h2>
+          <h2 className="text-2xl font-semibold mb-4">Let&apos;s Work Together</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and exciting projects.
-            Whether you're looking for a developer to join your team or need
-            help with a specific project, I'd love to hear from you.
+            I&apos;m always interested in new opportunities and exciting projects.
+            Whether you&apos;re looking for a developer to join your team or need
+            help with a specific project, I&apos;d love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

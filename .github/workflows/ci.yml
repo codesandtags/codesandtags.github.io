@@ -1,0 +1,48 @@
+name: CI Quality Gate
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  quality:
+    name: 🛡️ Code Quality & Build Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Ensure it matches what you use in Vercel
+          cache: 'npm' # Or 'pnpm' / 'yarn' if you use that
+
+      - name: 📦 Install Dependencies
+        run: npm ci # 'ci' is faster and safer than 'install' for clean environments
+
+      - name: 🔍 Linting (Static Analysis)
+        run: npm run lint
+        # This will catch ESLint errors before they break the build
+
+      - name: 🏗️ Type Check (TypeScript)
+        # If you use TypeScript, this is CRITICAL.
+        # If you don't have this script in package.json, add "type-check": "tsc --noEmit"
+        run: npx tsc --noEmit
+
+      - name: 🧪 Unit Tests (Optional)
+        # Uncomment this when you have tests.
+        # It's better to have the placeholder ready.
+        # run: npm run test
+
+      # - name: 🏗️ Dry Run Build
+        # Important: We try to build to see if Next.js explodes.
+        # This prevents you from breaking Production in Vercel.
+        # run: npm run build
+        # env:
+          # Sometimes you need to ignore secret environment variables in CI
+          # Or use dummy variables to make the build pass
+          # NEXT_PUBLIC_API_URL: "http://localhost:3000"
