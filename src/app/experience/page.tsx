@@ -4,13 +4,14 @@ import { Briefcase, Calendar, MapPin, Award, Users, Code } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Professional Experience - Edwin Torres',
   description:
-    "Explore Edwin Torres' professional journey as a Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.",
+    "Explore Edwin Torres' professional journey as a Principal Full-Stack Engineer at Questrade, Technical Lead at Scotiabank, and Software Architect. Expert in React, Angular, Next.js, TypeScript, and Micro Frontend Architecture.",
   keywords: [
     'Edwin Torres Experience',
+    'Questrade Principal Engineer',
     'HelloFresh Developer',
     'Scotiabank Technical Lead',
     'Software Architect',
-    'Frontend Developer Experience',
+    'Full-Stack Engineer Experience',
     'Micro Frontend Architecture',
     'React Developer Portfolio',
     'Toronto Software Engineer',
@@ -18,13 +19,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Professional Experience - Edwin Torres',
     description:
-      "Explore Edwin Torres' professional journey as a Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect.",
+      "Explore Edwin Torres' professional journey as a Principal Full-Stack Engineer at Questrade, Technical Lead at Scotiabank, and Software Architect.",
     url: 'https://codesandtags.github.io/experience',
   },
   twitter: {
     title: 'Professional Experience - Edwin Torres',
     description:
-      'Senior Software Engineer at HelloFresh, Technical Lead at Scotiabank, and Software Architect with expertise in React, Next.js, and Micro Frontend Architecture.',
+      'Principal Full-Stack Engineer at Questrade, Technical Lead at Scotiabank, and Software Architect with expertise in React, Angular, and Micro Frontend Architecture.',
   },
 }
 
@@ -41,10 +42,29 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    title: 'Senior Software Engineer',
+    title: 'Principal Full-Stack Engineer',
+    company: 'Questrade Financial Group',
+    location: 'Toronto, Canada',
+    period: '2026 - Present',
+    description:
+      'Driving architectural strategy and development using Micro Frontends and Angular, to build the next generation of Questrade Pro.',
+    achievements: ['Still on it :D'],
+    technologies: [
+      'Angular',
+      'Micro Frontends',
+      'TypeScript',
+      'JavaScript',
+      'Nx',
+      'RxJS',
+      'Gitlab',
+    ],
+    type: 'work',
+  },
+  {
+    title: 'Senior Software Developer',
     company: 'HelloFresh',
     location: 'Toronto, Canada',
-    period: '2025 - Present',
+    period: '2025 - 2026',
     description:
       'Leading software engineering for Factor Form (a sub-brand of Factor - HelloFresH) in US Market.',
     achievements: [
@@ -142,7 +162,7 @@ const experiences: ExperienceItem[] = [
     description:
       'Worked on the frontend solution for several global Endava clients',
     achievements: [
-      'Developed and optimized 5+ React + Redux applications for Endava\'s global clients, improving performance by 30% and user satisfaction by 25%.',
+      "Developed and optimized 5+ React + Redux applications for Endava's global clients, improving performance by 30% and user satisfaction by 25%.",
     ],
     technologies: ['JavaScript', 'React', 'Redux', 'Jest'],
     type: 'work',
@@ -189,7 +209,7 @@ const skills = [
       'OAuth 2.0',
       'MySQL',
       'PostgreSQL',
-      'MongoDB'
+      'MongoDB',
     ],
   },
   {
@@ -370,11 +390,14 @@ export default function ExperiencePage() {
 
         {/* Call to Action */}
         <section className="text-center bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-semibold mb-4">Let&apos;s Work Together</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+            Let&apos;s Work Together
+          </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            I&apos;m always interested in new opportunities and exciting projects.
-            Whether you&apos;re looking for a developer to join your team or need
-            help with a specific project, I&apos;d love to hear from you.
+            I&apos;m always interested in new opportunities and exciting
+            projects. Whether you&apos;re looking for a developer to join your
+            team or need help with a specific project, I&apos;d love to hear
+            from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

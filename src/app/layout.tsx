@@ -25,20 +25,21 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    default: 'Edwin Torres - Principal Full-Stack Engineer & Software Architect',
     template: '%s | Edwin Torres - codesandtags',
   },
   description:
-    'Edwin Torres is a Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture. Based in Toronto, Canada.',
+    'Edwin Torres is a Principal Full-Stack Engineer at Questrade, Software Architect, and advocate for ultralearning. Expert in React, Angular, Next.js, TypeScript, and Micro Frontend Architecture. Based in Toronto, Canada.',
   keywords: [
     'Edwin Torres',
-    'Frontend Developer',
+    'Principal Full-Stack Engineer',
     'Software Architect',
     'React Developer',
+    'Angular Developer',
     'Next.js',
     'TypeScript',
     'Micro Frontend',
-    'HelloFresh',
+    'Questrade',
     'Scotiabank',
     'Toronto Developer',
     'Ultralearning',
@@ -61,24 +62,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://codesandtags.github.io',
-    title: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    title: 'Edwin Torres - Principal Full-Stack Engineer & Software Architect',
     description:
-      'Edwin Torres is a Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript, and Micro Frontend Architecture.',
+      'Edwin Torres is a Principal Full-Stack Engineer at Questrade, Software Architect, and advocate for ultralearning. Expert in React, Angular, Next.js, TypeScript, and Micro Frontend Architecture.',
     siteName: 'codesandtags',
     images: [
       {
         url: '/img/profile-v1.webp',
         width: 1200,
         height: 630,
-        alt: 'Edwin Torres - Senior Frontend Developer',
+        alt: 'Edwin Torres - Principal Full-Stack Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Edwin Torres - Senior Frontend Developer & Software Architect',
+    title: 'Edwin Torres - Principal Full-Stack Engineer & Software Architect',
     description:
-      'Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning. Expert in React, Next.js, TypeScript.',
+      'Principal Full-Stack Engineer at Questrade, Software Architect, and advocate for ultralearning. Expert in React, Angular, Next.js, TypeScript.',
     images: ['/img/profile-v1.webp'],
     creator: '@codesandtags',
   },
@@ -136,11 +137,11 @@ export default function RootLayout({
             url: 'https://codesandtags.github.io',
             image: 'https://codesandtags.github.io/img/profile-v1.webp',
             description:
-              'Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning',
-            jobTitle: 'Senior Frontend Developer',
+              'Principal Full-Stack Engineer at Questrade, Software Architect, and advocate for ultralearning',
+            jobTitle: 'Principal Full-Stack Engineer',
             worksFor: {
               '@type': 'Organization',
-              name: 'HelloFresh',
+              name: 'Questrade',
             },
             address: {
               '@type': 'PostalAddress',
@@ -162,7 +163,7 @@ export default function RootLayout({
               'Software Architecture',
               'Ultralearning',
             ],
-            alumniOf: 'Scotiabank',
+            alumniOf: ['Scotiabank', 'HelloFresh'],
             hasOccupation: {
               '@type': 'Occupation',
               name: 'Software Engineer',

@@ -27,7 +27,6 @@ export default function Hero() {
     <div
       className={`relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-48 md:pb-24 ${styles.beforeGradient}`}
       onMouseMove={handleMouseMove}
-
       style={
         {
           '--mouse-x': `${mousePosition.x}px`,
@@ -51,18 +50,19 @@ export default function Hero() {
             Edwin Torres
           </h1>
           <p className="mt-4 mb-6 sm:mt-6 sm:mb-8 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto px-4 sm:px-0">
-            👋 Hi there! I am a{' '}
-            <strong className="text-foreground">lifelong-learner</strong>,
-            software engineer, and advocate for ultralearning. My expertise
-            spans <strong className="text-foreground">Web Development</strong>,{' '}
-            and{' '}
+            👋 Hi there! I build scalable solutions using modern{' '}
+            <strong className="text-foreground">Web Development</strong> and{' '}
             <strong className="text-foreground">Software Architecture</strong>.
+            As a <strong className="text-foreground">lifelong-learner</strong> ,
+            my greatest joy is{' '}
+            <strong className="text-foreground">mentoring people</strong> and
+            empowering the next generation of tech talent.
           </p>
 
           {/* CTA Buttons */}
           <div className="mt-8 mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <a
-              href="https://calendly.com/codesandtags"
+              href="https://adplist.org/mentors/edwin-torres-sanchez"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all text-md"
