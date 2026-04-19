@@ -4,10 +4,10 @@ export const dynamic = 'force-static'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Edwin Torres - Senior Frontend Developer',
+    name: 'Edwin Torres - Principal Full-Stack Engineer',
     short_name: 'Edwin Torres',
     description:
-      'Senior Frontend Developer at HelloFresh, Software Architect, and advocate for ultralearning',
+      'Principal Full-Stack Engineer at Questrade, Software Architect, and advocate for ultralearning',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

@@ -13,12 +13,21 @@ interface FeaturedItem {
 
 const featuredItems: FeaturedItem[] = [
   {
+    title: 'Principal Full-Stack Engineer at Questrade',
+    description:
+      'Driving architectural strategy and development using Micro Frontends and Angular.',
+    type: 'project',
+    link: '/experience',
+    date: '2026 - Present',
+    isExternal: false,
+  },
+  {
     title: 'Senior Frontend Developer at HelloFresh',
     description:
       'Leading frontend development for Factor Form in the US Market, driving end-to-end development of critical features.',
     type: 'project',
     link: '/experience',
-    date: '2025 - Present',
+    date: '2025 - 2026',
     isExternal: false,
   },
   {
