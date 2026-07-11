@@ -9,12 +9,11 @@ import Link from 'next/link'
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    // Replace <img> with Next.js <Image> for automatic optimisation and lazy loading
+    // Use standard <img> for MDX since dimensions aren't statically known
     img: (props) => (
-      <Image
-        sizes="100vw"
+      <img
         style={{ width: '100%', height: 'auto', borderRadius: '0.5rem' }}
-        {...(props as ImageProps)}
+        {...props}
         alt={props.alt ?? ''}
       />
     ),
