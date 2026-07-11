@@ -142,63 +142,112 @@ A type-safe content SDK that generates TypeScript types from a content schema de
 
 ## 3. Decision
 
-**We adopt Option B: `gray-matter` + `next-mdx-remote`**, with the following plugin stack:
+**We adopt Option D: `@next/mdx` + `remark-frontmatter` + `remark-mdx-frontmatter`**, with the following plugin stack as implemented:
 
-| Concern | Package | Rationale |
-|---|---|---|
-| Frontmatter parsing | `gray-matter` | Zero-config YAML parsing, compatible with Jekyll/Astro formats |
-| MDX rendering | `next-mdx-remote` | RSC-compatible via `/rsc` export, highly optimized for Vercel builds |
-| Code highlighting | `rehype-pretty-code` + `shiki` | Shiki-powered, zero client JS, 200+ themes, line numbers, diff support |
-| GFM (tables, strikethrough) | `remark-gfm` | GitHub Flavored Markdown compatibility |
-| Heading anchors | `rehype-slug` + `rehype-autolink-headings` | Deep-linkable headings for long technical posts |
-| Reading time | `remark-reading-time` | Exposes estimated read time for listing cards |
+### 3.1 Plugin Stack
 
-### Code Highlighting Configuration
+| Concern | Package | Layer | Notes |
+|---|---|---|---|
+| MDX rendering | `@next/mdx` | `withMDX` (next.config.ts) | Official Vercel plugin; Turbopack-compatible |
+| Frontmatter parsing (YAML → object) | `js-yaml` | `src/lib/markdown/index.ts` | Used directly via `fs` + regex — see §3.2 |
+| GFM (tables, strikethrough) | `'remark-gfm'` (string) | `withMDX` | Passed as string per Turbopack constraint |
+| Frontmatter → ESM export | `'remark-frontmatter'` + `'remark-mdx-frontmatter'` (strings) | `withMDX` | Makes `export const frontmatter` available in detail pages |
+| Heading anchors | `'rehype-slug'` + `'rehype-autolink-headings'` (strings) | `withMDX` | Deep-linkable headings |
+| Reading time | `reading-time` | `src/lib/markdown/index.ts` | Called directly on raw markdown body |
+| Code highlighting | `rehype-pretty-code` + `shiki` | ⚠️ Temporarily excluded | See §3.2 — Turbopack constraint |
 
-Code blocks will use `rehype-pretty-code` with the `github-dark` theme, matching the site's dark-mode aesthetic. The following features will be enabled:
+### 3.2 Turbopack Constraint Discovery
 
-```mdx
-```typescript title="src/lib/markdown/index.ts" {3-5}
-// Title annotations, highlighted line ranges, and diff markers
-- const old = 'remove this'
-+ const improved = 'add this'
+> [!IMPORTANT]
+> **Turbopack (Next.js 16 default bundler) requires all plugin options passed to `withMDX` to be JSON-serialisable.** It runs in a Rust context and cannot execute JavaScript function references during the build phase.
+
+This caused two implementation deviations from the original Option D sketch:
+
+**Deviation 1 — Plugin identifiers must be strings, not imports:**
+```ts
+// ❌ Fails with: "loader does not have serializable options"
+import remarkGfm from 'remark-gfm'
+const withMDX = createMDX({ options: { remarkPlugins: [remarkGfm] } })
+
+// ✅ Turbopack-compatible — @next/mdx resolves these by name internally
+const withMDX = createMDX({ options: { remarkPlugins: ['remark-gfm'] } })
 ```
-```
 
-### Hero Image Rendering
-
-Hero images will be declared in frontmatter as `heroImage: /images/blog/post-slug/hero.jpg` and rendered via Next.js's `<Image>` component with `priority` set, ensuring LCP optimization on post pages.
-
-### SEO & Social Sharing
-
-Each post page will call `generateMetadata()` with the following Open Graph and Twitter card fields sourced from post frontmatter:
+**Deviation 2 — Frontmatter parsing moved to the lib layer:**
+While `remark-frontmatter` + `remark-mdx-frontmatter` are installed and wired as strings in the `withMDX` chain (making `export const frontmatter` available in the compiled MDX module on detail pages), the **listing page** uses `fs.readFileSync` + `js-yaml` directly to extract frontmatter without triggering a full MDX compilation per file — which is both faster and simpler:
 
 ```ts
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug)
+// src/lib/markdown/index.ts
+import { load as yamlLoad } from 'js-yaml'
+import readingTime from 'reading-time'
+
+function parseFrontmatter(source: string) {
+  const match = source.match(/^---\r?\n([\s\S]+?)\r?\n---\r?\n?([\s\S]*)/)
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    data: (yamlLoad(match![1]) ?? {}) as Record<string, unknown>,
+    content: match![2],
+  }
+}
+
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const files = (await readdir(BLOG_DIR)).filter((f) => /\.mdx?$/.test(f))
+  return Promise.all(
+    files.map(async (file) => {
+      const slug = file.replace(/\.mdx?$/, '')
+      const source = await readFile(path.join(BLOG_DIR, file), 'utf-8')
+      const { data, content } = parseFrontmatter(source)
+      const frontmatter = validateFrontmatter(slug, data)
+      return { slug, frontmatter, readingTime: readingTime(content).text }
+    })
+  )
+}
+```
+
+**Deviation 3 — `rehype-pretty-code` temporarily excluded:**
+Even passed as a string, `rehype-pretty-code` internally spawns a Shiki WASM bundler that creates non-serialisable objects, causing the same build error. Code blocks render with `bg-card` styling today. Syntax colour highlighting will be re-enabled once Turbopack ships full ESM plugin support.
+> Track: https://github.com/vercel/next.js/issues/64525
+
+### 3.3 File Naming Convention (Implemented)
+
+Post filenames use the slug directly as the filename (not the `YYYY-MM-DD-` prefix from the original ADR-0003 draft). This enables clean dynamic imports in the detail page without a slug→filename lookup:
+
+```
+{slug}.mdx   →   slug: "welcome-to-my-blog"
+URL: /blog/welcome-to-my-blog
+```
+
+Chronological ordering is achieved via `frontmatter.date` sort in `getAllPosts()`, not the filesystem.
+
+### 3.4 Hero Image & SEO (Implemented)
+
+Hero images are declared in frontmatter as `heroImage: /images/blog/slug/hero.jpg` and rendered via `<Image priority>` for LCP optimisation. When absent, the listing card renders a gradient placeholder.
+
+Each post page calls `generateMetadata()` with full Open Graph + Twitter card fields sourced from frontmatter:
+
+```ts
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
+  const { title, description, heroImage, date, updatedAt, tags } = post.frontmatter
+  return {
+    title,
+    description,
     openGraph: {
       type: 'article',
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      publishedTime: post.frontmatter.date,
+      publishedTime: date,
+      modifiedTime: updatedAt,
       authors: ['Edwin Torres'],
-      images: [{ url: post.frontmatter.heroImage, width: 1200, height: 630 }],
+      images: heroImage
+        ? [{ url: heroImage, width: 1200, height: 630 }]
+        : [{ url: '/img/profile-v1.webp', width: 1200, height: 630 }],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      images: [post.frontmatter.heroImage],
-      creator: '@codesandtags',
-    },
+    twitter: { card: 'summary_large_image', creator: '@codesandtags' },
   }
 }
 ```
 
 ---
+
 
 ## 4. Consequences
 
@@ -228,11 +277,18 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
 ## 5. References
 
-- [next-mdx-remote GitHub](https://github.com/hashicorp/next-mdx-remote)
-- [rehype-pretty-code](https://rehype-pretty-code.netlify.app/)
+- [`@next/mdx` — Next.js Official Docs](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- [`remark-frontmatter`](https://github.com/remarkjs/remark-frontmatter)
+- [`remark-mdx-frontmatter`](https://github.com/remcohaszing/remark-mdx-frontmatter)
+- [`js-yaml`](https://github.com/nodeca/js-yaml)
+- [`reading-time`](https://github.com/ngryman/reading-time)
+- [`rehype-slug`](https://github.com/rehypejs/rehype-slug)
+- [`rehype-autolink-headings`](https://github.com/rehypejs/rehype-autolink-headings)
+- [`rehype-pretty-code`](https://rehype-pretty-code.netlify.app/) _(installed, pending Turbopack re-enablement)_
 - [Shiki Themes](https://shiki.style/themes)
-- [gray-matter](https://github.com/jonschlinkert/gray-matter)
-- [remark-gfm](https://github.com/remarkjs/remark-gfm)
-- [Contentlayer status — community thread](https://github.com/contentlayerdev/contentlayer/issues/429)
+- [`remark-gfm`](https://github.com/remarkjs/remark-gfm)
+- [next-mdx-remote — Archived April 9, 2026](https://github.com/hashicorp/next-mdx-remote)
+- [Contentlayer status](https://github.com/contentlayerdev/contentlayer/issues/429)
 - [Velite — Contentlayer successor](https://velite.js.org/)
 - [Next.js generateMetadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
+- [Turbopack serialisable options issue](https://github.com/vercel/next.js/issues/64525)
