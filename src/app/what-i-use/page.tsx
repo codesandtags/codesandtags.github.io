@@ -54,12 +54,11 @@ interface ToolItem {
 const tools: ToolItem[] = [
   // Software - Development
   {
-    name: 'Cursor',
+    name: 'Antigravity IDE',
     description:
-      'Recently, I started using Cursor as my AI assistant for coding.',
+      'I use Antigravity IDE as my AI coding assistant for advanced agentic coding.',
     category: 'Development',
     icon: <Code className="h-5 w-5" />,
-    link: 'https://cursor.sh',
   },
   {
     name: 'Visual Studio Code',
@@ -69,12 +68,12 @@ const tools: ToolItem[] = [
     link: 'https://code.visualstudio.com',
   },
   {
-    name: 'Warp',
+    name: 'Ghostty',
     description:
-      'I use Warp to manage my local development environment as an alternative to iTerm2.',
+      'I moved to Ghostty to have a more performant and minimalistic TUI for my local development environment.',
     category: 'Development',
     icon: <Monitor className="h-5 w-5" />,
-    link: 'https://www.warp.dev',
+    link: 'https://ghostty.org/',
   },
   {
     name: 'Docker Desktop',
@@ -142,12 +141,11 @@ const tools: ToolItem[] = [
     icon: <Watch className="h-5 w-5" />,
   },
   {
-    name: 'Sony WH-CH700N',
+    name: 'Sony WH-CH1000XM5',
     description:
-      'I have been using these headphones for 5 years now, and I love them, mainly because of the noise cancellation feature.',
+      'I now use the Sony WH-CH1000XM5 as my main headphones, which offer incredible noise cancellation and sound quality.',
     category: 'Headphones',
     icon: <Headphones className="h-5 w-5" />,
-    link: 'https://www.sony.ca/en/electronics/headband-headphones/wh-ch700n',
   },
   {
     name: 'Audio Technica AT2020',

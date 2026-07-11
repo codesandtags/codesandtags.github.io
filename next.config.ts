@@ -41,6 +41,8 @@ const withMDX = createMDX({
       'rehype-slug',
       // Wrap headings in anchor links using the slug id
       ['rehype-autolink-headings', { behavior: 'wrap' }],
+      // Add image dimensions at build time
+      ['rehype-img-size', { dir: 'public' }],
     ],
   },
 })
