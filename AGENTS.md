@@ -65,6 +65,7 @@ Pinned versions reflect `package.json` / `package-lock.json` as of the current w
 │   │       ├── Navbar.tsx, Footer.tsx, Hero.tsx, ThemeProvider.tsx
 │   │       ├── FeaturedWork.tsx, Features.tsx, ContactSection.tsx
 │   │       ├── button.tsx, badge.tsx, navigation-menu.tsx
+│   │       ├── code-block.tsx, copy-button.tsx
 │   │       └── Hero.module.css
 │   ├── lib/
 │   │   └── utils.ts               # Shared utilities (`cn` tailwind-merge helper)
@@ -152,7 +153,7 @@ When integrating the legacy blog from [codesandtags/blog](https://github.com/cod
 1.  **Content Migration**: Import markdown/MDX articles into `src/content/blog/`.
 2.  **Asset Management**: Place static images referenced by posts in `public/images/blog/`.
 3.  **Route Setup**: Create `/blog` (list) and `/blog/[slug]` (post) under `src/app/blog/`, consistent with the global theme.
-4.  **Markdown Layer**: Add parsing logic under `src/lib/markdown/` (refer to ADR-0002).
+4.  **Markdown Layer**: Add parsing logic under `src/lib/markdown/` (refer to ADR-0002). Code blocks are handled by a custom `CodeBlock` Server Component utilizing `shiki` to bypass Turbopack plugin limitations.
 5.  **SEO**: Every blog page must render metadata via Next.js `generateMetadata` (title, description, Open Graph).
 6.  **Vercel Deployment**: Ensure the build configuration on Vercel is properly hooked up to deploy the single Next.js project.
 

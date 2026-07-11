@@ -48,12 +48,16 @@ const experiences: ExperienceItem[] = [
     period: '2026 - Present',
     description:
       'Driving architectural strategy and development using Micro Frontends and Angular, to build the next generation of Questrade Pro.',
-    achievements: ['Still on it :D'],
+    achievements: [
+      'Improved the Trading Charts implementation and performance for the Questrade Pro platform.',
+      'Still on it :D'
+    ],
     technologies: [
       'Angular',
       'Micro Frontends',
       'TypeScript',
       'JavaScript',
+      'Cursor IDE',
       'Nx',
       'RxJS',
       'Gitlab',
@@ -354,6 +358,31 @@ export default function ExperiencePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Mentorship & Community Impact */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-8 flex items-center gap-2">
+            <Users className="h-6 w-6" />
+            Mentorship & Community Impact
+          </h2>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+            <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg">
+              I am actively mentoring people aspiring to improve their professional career, interviews, and frontend skills on ADPList. That&apos;s something I love.
+            </p>
+            <div className="flex justify-center">
+              <section style={{ padding: '1rem', width: '100%', maxWidth: '380px', minHeight: '350px' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt="Impact swag image"
+                  src="https://adplist-users-production.s3.us-east-1.amazonaws.com/664670a89429c433384cffe5b4b45359/swags/daef1738-5aba-52c4-810b-4371cc5ef36e.webp"
+                  height="100%"
+                  width="100%"
+                  style={{ backgroundColor: 'rgb(225, 49, 108)', borderRadius: '14px' }}
+                />
+              </section>
+            </div>
           </div>
         </section>
 
