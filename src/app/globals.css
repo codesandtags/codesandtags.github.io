@@ -78,3 +78,69 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Blog prose (MDX body) — dark-theme overrides ──────────────────────────── */
+/* These override @tailwindcss/typography defaults to match the site's CSS vars */
+@layer base {
+  .prose {
+    --tw-prose-body: hsl(var(--foreground));
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-lead: hsl(var(--muted-foreground));
+    --tw-prose-links: hsl(var(--primary));
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-counters: hsl(var(--muted-foreground));
+    --tw-prose-bullets: hsl(var(--muted-foreground));
+    --tw-prose-hr: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--foreground));
+    --tw-prose-quote-borders: hsl(var(--primary));
+    --tw-prose-captions: hsl(var(--muted-foreground));
+    --tw-prose-code: hsl(var(--primary));
+    --tw-prose-pre-code: hsl(var(--foreground));
+    --tw-prose-pre-bg: hsl(var(--card));
+    --tw-prose-th-borders: hsl(var(--border));
+    --tw-prose-td-borders: hsl(var(--border));
+
+    /* Dark invert values (same tokens, dark theme CSS vars resolve differently) */
+    --tw-prose-invert-body: hsl(var(--foreground));
+    --tw-prose-invert-headings: hsl(var(--foreground));
+    --tw-prose-invert-lead: hsl(var(--muted-foreground));
+    --tw-prose-invert-links: hsl(var(--primary));
+    --tw-prose-invert-bold: hsl(var(--foreground));
+    --tw-prose-invert-counters: hsl(var(--muted-foreground));
+    --tw-prose-invert-bullets: hsl(var(--muted-foreground));
+    --tw-prose-invert-hr: hsl(var(--border));
+    --tw-prose-invert-quotes: hsl(var(--foreground));
+    --tw-prose-invert-quote-borders: hsl(var(--primary));
+    --tw-prose-invert-captions: hsl(var(--muted-foreground));
+    --tw-prose-invert-code: hsl(var(--primary));
+    --tw-prose-invert-pre-code: hsl(var(--foreground));
+    --tw-prose-invert-pre-bg: hsl(var(--card));
+    --tw-prose-invert-th-borders: hsl(var(--border));
+    --tw-prose-invert-td-borders: hsl(var(--border));
+  }
+
+  /* rehype-pretty-code produces <figure data-rehype-pretty-code-figure> wrappers */
+  .prose figure[data-rehype-pretty-code-figure] {
+    @apply my-6 rounded-xl overflow-hidden border border-border;
+  }
+
+  .prose figure[data-rehype-pretty-code-figure] figcaption {
+    @apply text-xs text-muted-foreground px-4 py-2 bg-card border-b border-border font-mono;
+  }
+
+  .prose pre {
+    @apply !bg-card rounded-none !my-0 overflow-x-auto;
+  }
+
+  /* Inline code — not inside a pre block */
+  .prose :not(pre) > code {
+    @apply px-1.5 py-0.5 rounded text-sm bg-primary/10 text-primary font-mono;
+    font-weight: inherit;
+  }
+
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after {
+    content: none;
+  }
+}
+

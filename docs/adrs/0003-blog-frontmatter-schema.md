@@ -3,19 +3,20 @@
 | Field | Value |
 |---|---|
 | **ID** | ADR-0003 |
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-11 |
+| **Implemented** | 2026-07-11 — `BlogPostFrontmatter` and `BlogPost` live in `src/types/blog.ts`; validation in `src/lib/markdown/validate.ts` |
 | **Author** | Edwin Torres ([@codesandtags](https://github.com/codesandtags)) |
 | **Deciders** | Edwin Torres |
 | **Depends On** | [ADR-0001](./0001-monorepo-strategy.md) — Modular Single Next.js Application |
 | **Depends On** | [ADR-0002](./0002-mdx-content-pipeline.md) — MDX Content Pipeline |
-| **Review** | Pending approval |
+| **Review** | Approved |
 
 ---
 
 ## 1. Context & Problem Statement
 
-ADR-0002 established that `gray-matter` will parse YAML frontmatter from `.mdx` files. `gray-matter` returns frontmatter as an untyped `Record<string, unknown>` object. Without a formal, versioned schema, the following failure modes are possible:
+ADR-0002 established that `js-yaml` (and `@next/mdx` with `remark-mdx-frontmatter` at compile time) will parse YAML frontmatter from `.mdx` files. The raw parser returns frontmatter as an untyped `Record<string, unknown>` object. Without a formal, versioned schema, the following failure modes are possible:
 
 1. **Silent runtime errors**: A missing required field (e.g., `description`) causes the SEO `generateMetadata()` to emit an empty string to search crawlers — a silent failure with real SEO consequences.
 2. **Inconsistent content**: Some posts have `categories`, others have `topics`, others have neither. The listing page cannot filter or group posts reliably.
@@ -43,7 +44,7 @@ tags: [books, fundamentals, software]
 - No `description` / `excerpt` field → cannot populate `og:description` or listing cards without parsing post body.
 - No `slug` field → slug must be derived from filename (acceptable, but must be documented as a rule).
 - No `updatedAt` field → cannot show "last updated" timestamps or signal freshness to crawlers.
-- No `readingTime` field → must be computed at parse time (handled by `remark-reading-time`).
+- No `readingTime` field → must be computed at parse time (handled by the `reading-time` package called directly in `src/lib/markdown/index.ts`).
 - No `ogImage` field distinct from `image` → the hero image and the social card image may need to differ in aspect ratio (blog hero: variable; OG image: 1200×630).
 - `categories` and `tags` overlap in purpose — both exist without a defined distinction.
 
@@ -82,7 +83,7 @@ featured: false                                           # OPTIONAL — surface
 
 ### 2.2 TypeScript Interface
 
-The schema above is encoded as a TypeScript interface and enforced at the point of `gray-matter` parsing inside `src/lib/markdown/index.ts`.
+The schema above is encoded as a TypeScript interface and enforced at the point of frontmatter parsing inside `src/lib/markdown/index.ts` (using `js-yaml` for listing/metatags and `@next/mdx` for detail pages).
 
 ```ts
 // src/types/blog.ts
@@ -113,10 +114,9 @@ export interface BlogPostFrontmatter {
 }
 
 export interface BlogPost {
-  slug: string           // Derived from filename: "2024-01-15-my-post.mdx" -> "my-post"
+  slug: string           // Derived from filename: "my-post.mdx" -> "my-post"
   frontmatter: BlogPostFrontmatter
-  readingTime: string    // Computed by remark-reading-time: "5 min read"
-  content: string        // Raw MDX body (used by next-mdx-remote for rendering)
+  readingTime: string    // Computed by reading-time package: "5 min read"
 }
 ```
 
@@ -149,27 +149,32 @@ export function validateFrontmatter(
 
 ### 2.4 File Naming Convention
 
-Post filenames follow a strict convention that doubles as the slug source:
+Post filenames use the **slug directly as the filename** (no date prefix). This enables clean dynamic imports in the detail page without a slug→filename reverse-lookup:
 
 ```
-YYYY-MM-DD-kebab-case-title.mdx
+{slug}.mdx   →   slug: "welcome-to-my-blog"
 ```
 
 **Examples:**
 ```
-2024-01-15-fundamentals-of-software-architecture-part-1.mdx
-2024-06-10-lessons-learned-from-staff-engineer-path.mdx
+welcome-to-my-blog.mdx
+fundamentals-of-software-architecture-part-1.mdx
+lessons-from-staff-engineer-path.mdx
 ```
 
-The slug is derived by stripping the date prefix:
+The slug is the filename without its extension:
 
 ```ts
-// "2024-01-15-fundamentals-of-software-architecture-part-1.mdx"
-// → slug: "fundamentals-of-software-architecture-part-1"
-const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.mdx$/, '')
+// "welcome-to-my-blog.mdx" → slug: "welcome-to-my-blog"
+const slug = filename.replace(/\.mdx?$/, '')
 ```
 
-**Rationale:** The date prefix keeps the file system sorted chronologically (critical for readability as content grows), while the slug strips the date to produce clean, evergreen URLs (`/blog/fundamentals-of-software-architecture-part-1`).
+**Rationale:** The date prefix approach (originally considered in ADR-0003) was evaluated during implementation. It was dropped because:
+1. Chronological sort is achieved via `frontmatter.date` in `getAllPosts()` — no filesystem ordering needed.
+2. Dynamic `import(`@/content/blog/${slug}.mdx`)` in the detail page requires a direct slug→filename mapping. A date-prefixed filename would require a reverse-lookup from `getAllPosts()`, adding complexity with no user-visible benefit.
+3. The date in the filename would be duplicated data (already stored in frontmatter).
+
+The slug produces clean, evergreen URLs (`/blog/fundamentals-of-software-architecture-part-1`) with no date segment.
 
 ### 2.5 Image Asset Convention
 
@@ -224,8 +229,8 @@ The 12 existing posts from the legacy Astro blog require the following transform
 ### Negative (Trade-offs Accepted)
 
 - **Manual description authoring for 12 legacy posts.** There is no good automated shortcut. An LLM-generated description is acceptable for migration speed, but each description should be reviewed for accuracy before merging.
-- **Schema is not enforced at author time.** There is no frontmatter schema linting at the editor level. A future improvement would be a VS Code extension or a pre-commit hook using `zod` to parse and validate frontmatter before commit.
-- **No database.** All filtering, sorting, and search is done in-memory over the array returned by `getAllPosts()`. At the current content volume (12–100 posts), this is fast. Beyond ~500 posts, consider adding a pre-built JSON index file at build time.
+- **Schema is not enforced at author time.** There is no frontmatter schema linting at the editor level. A future improvement would be a pre-commit hook using `zod` to parse and validate frontmatter before commit.
+- **No database.** All filtering, sorting, and search is done in-memory over the array returned by `getAllPosts()`. At the current content volume (12–100 posts), this is fast.
 
 ### Follow-up Decisions Required
 
@@ -237,7 +242,8 @@ The 12 existing posts from the legacy Astro blog require the following transform
 
 ## 5. References
 
-- [gray-matter](https://github.com/jonschlinkert/gray-matter)
+- [js-yaml](https://github.com/nodeca/js-yaml)
+- [remark-mdx-frontmatter](https://github.com/remcohaszing/remark-mdx-frontmatter)
 - [Open Graph Protocol — article properties](https://ogp.me/#type_article)
 - [Twitter Card documentation](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup)
 - [Next.js generateMetadata API](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)

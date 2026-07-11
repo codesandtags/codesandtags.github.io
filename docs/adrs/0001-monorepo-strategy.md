@@ -3,11 +3,12 @@
 | Field | Value |
 |---|---|
 | **ID** | ADR-0001 |
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-11 |
+| **Implemented** | 2026-07-11 — blog pipeline scaffolded per the modular single Next.js app structure |
 | **Author** | Edwin Torres ([@codesandtags](https://github.com/codesandtags)) |
 | **Deciders** | Edwin Torres |
-| **Review** | Pending approval |
+| **Review** | Approved |
 
 ---
 
@@ -176,11 +177,11 @@ Even with Vercel lifting the single-directory deployment constraint of GitHub Pa
 
 The following decisions are **not in scope for this ADR** but are directly triggered by it and must be addressed before blog implementation begins:
 
-| ADR | Topic | Priority |
+| ADR | Topic | Status |
 |---|---|---|
-| ADR-0002 | Markdown / MDX parsing strategy (`gray-matter` + `next-mdx-remote` vs. `@next/mdx` vs. `contentlayer`) | High |
-| ADR-0003 | Blog post frontmatter schema and content governance | Medium |
-| ADR-0004 | Image optimization strategy for blog assets | Medium |
+| [ADR-0002](./0002-mdx-content-pipeline.md) | MDX content pipeline (`@next/mdx` + remark/rehype + `js-yaml`) | ✅ Revised & Accepted |
+| [ADR-0003](./0003-blog-frontmatter-schema.md) | Blog post frontmatter schema and content governance | ✅ Accepted |
+| ADR-0004 | Image optimization strategy for blog assets | ⏳ Pending |
 
 ---
 

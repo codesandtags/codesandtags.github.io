@@ -1,0 +1,65 @@
+---
+title: "Welcome to My Blog: Thoughts on Software Architecture & Engineering"
+description: "Why I started writing again, what you can expect from this blog, and how ultralearning shaped my engineering philosophy."
+tags: ["engineering", "software-architecture", "ultralearning", "career"]
+categories: ["Engineering", "Career"]
+date: 2024-01-15
+author: codesandtags
+draft: false
+featured: true
+---
+
+After a long break from writing, I am relaunching this blog — now integrated directly into my portfolio under one unified Next.js application. No more context-switching between two separate repos, two deployment pipelines, and two design systems that slowly drifted apart.
+
+## Why I Stopped Writing
+
+Ironically, the reason I stopped writing was because I was learning too much, too fast. Between shipping Micro Frontend architecture across seven applications at Scotiabank, leading frontend platform work at HelloFresh, and diving deep into Backstage on Anthos — there was never a quiet moment to sit down and synthesise what I was learning into something shareable.
+
+I kept a folder of half-finished drafts. Topics like:
+
+- Why the strangler fig pattern is underrated for large-scale migrations
+- How to interview for senior engineering roles when you are already one
+- Lessons from running a frontend guild at scale
+
+They never made it past the outline stage.
+
+## What Changes This Time
+
+The architecture. Literally.
+
+By integrating the blog into `codesandtags.github.io` as a proper route (`/blog/[slug]`) rather than a separate Astro deployment, writing and publishing become part of the same `git push` workflow as updating my portfolio. No additional CI pipeline. No separate deployment to watch. Less friction means more posts.
+
+The technical stack driving this blog:
+
+```typescript title="src/lib/markdown/index.ts"
+// Fast frontmatter extraction — no full MDX compilation for listings
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const files = (await readdir(BLOG_DIR)).filter((f) => /\.mdx?$/.test(f))
+  // ...
+}
+```
+
+Code blocks in every post ship with **zero client-side JavaScript** — syntax highlighting is done at build time by [Shiki](https://shiki.style/) via `rehype-pretty-code`. What you see is pure, pre-rendered HTML and CSS.
+
+## What You Can Expect
+
+Posts will cluster around three themes:
+
+### 1. Software Architecture
+The decisions I have made (and a few I regret). Topics like Micro Frontend trade-offs, how to write useful ADRs, when NOT to use event-driven architecture, and what "modular monolith" actually means in practice.
+
+### 2. Engineering Leadership
+How to grow from senior engineer to staff/principal without losing your technical depth. On running frontend guilds, doing effective architecture reviews, and the difference between influence and authority.
+
+### 3. Ultralearning
+I read Scott Young's *Ultralearning* in 2019 and it changed how I approach skill acquisition. I have applied its principles to everything from learning Angular from scratch in 90 days to picking up infrastructure tooling while shipping production features. Practical notes on deliberate practice for engineers.
+
+## One Closing Thought
+
+> The best way to understand something deeply is to teach it.
+
+I have learned more from writing my [Software Architecture book notes](/blog) than from any conference talk or course. Writing forces you to find the gaps in your understanding.
+
+More posts coming. No fixed schedule — only when there is something worth saying.
+
+— **Edwin** / [@codesandtags](https://github.com/codesandtags)

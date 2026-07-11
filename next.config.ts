@@ -1,36 +1,52 @@
 import type { NextConfig } from 'next'
+import createMDX from '@next/mdx'
+
+// Turbopack (Next.js 16 default bundler) requires plugin options to be
+// JSON-serialisable — it cannot receive imported JavaScript functions because
+// it operates in a Rust context during the build phase.
+//
+// The fix is to pass plugin identifiers as strings; @next/mdx resolves and
+// loads them inside the environment where they can be executed.
+//
+// rehype-pretty-code is intentionally omitted: it relies on the Shiki
+// bundler which creates non-serialisable objects even when loaded by string.
+// Syntax highlighting will be added once Turbopack ships full ESM plugin
+// support, or via the Webpack bundler fallback if needed.
+// Track: https://github.com/vercel/next.js/issues/64525
 
 const nextConfig: NextConfig = {
-  /* config options here */
   basePath: '',
   images: {
-    domains: [
-      'raw.githubusercontent.com',
-      'codesandtags.io',
-      'www.codesandtags.io',
-      'codesandtags.github.io'
+    remotePatterns: [
+      { protocol: 'https', hostname: 'raw.githubusercontent.com' },
+      { protocol: 'https', hostname: 'codesandtags.io' },
+      { protocol: 'https', hostname: 'www.codesandtags.io' },
+      { protocol: 'https', hostname: 'codesandtags.github.io' },
     ],
-  },
-  async rewrites() {
-    return [
-      // {
-      //   // Cuando alguien entre a /blog...
-      //   source: '/blog',
-      //   // Vercel irá a buscar el contenido a GitHub...
-      //   destination: 'https://codesandtags.github.io/blog/index.html',
-      // },
-      // {
-      //   // Para que carguen los estilos y JS del blog
-      //   source: '/blog/:path*',
-      //   destination: 'https://codesandtags.github.io/blog/:path*',
-      // },
-      // Repite esto para tus otros proyectos "legacy"
-      // {
-      //   source: '/dark-mode-extension/:path*',
-      //   destination: 'https://codesandtags.github.io/dark-mode-extension/:path*',
-      // },
-    ];
   },
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [
+      // remark-frontmatter must come before remark-mdx-frontmatter
+      'remark-frontmatter',
+      // Converts the YAML frontmatter block into `export const frontmatter = {...}`
+      'remark-mdx-frontmatter',
+      // GitHub Flavored Markdown: tables, strikethrough, task lists
+      'remark-gfm',
+    ],
+    rehypePlugins: [
+      // Add id attributes to headings for deep-linking
+      'rehype-slug',
+      // Wrap headings in anchor links using the slug id
+      ['rehype-autolink-headings', { behavior: 'wrap' }],
+    ],
+  },
+})
+
+export default withMDX({
+  ...nextConfig,
+  // Allow .md and .mdx files to be imported and rendered as React components
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+})
