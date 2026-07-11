@@ -16,10 +16,10 @@
 
 ADR-0001 established that blog content will live under `src/content/blog/` as Markdown/MDX files and be rendered via Next.js App Router dynamic routes at `/blog/[slug]`. This ADR addresses the **next critical sub-decision**: how to parse, process, and render that content.
 
-The legacy blog ([codesandtags/blog](https://github.com/codesandtags/blog)) was built with **Astro + `@astrojs/mdx`**. All 12 existing posts are plain `.md` files with YAML frontmatter. Migrating them requires a parsing pipeline that is:
+The legacy blog ([codesandtags/blog](https://github.com/codesandtags/blog)) was built with **Astro + `@astrojs/mdx`**. All 12 existing posts are plain `.md` files with legacy YAML frontmatter (Jekyll/Chirpy schema format). Migrating them requires a parsing pipeline that is:
 
-1. **Compatible with Next.js 16 App Router and static export** (`output: 'export'`). This eliminates solutions that require a Node.js runtime at request time.
-2. **MDX-capable**: The new pipeline must support MDX (`.mdx`) to allow embedding React components inside post content — enabling future rich features like interactive demos, custom callouts, and embedded code playgrounds.
+1. **Compatible with Next.js 16 App Router on Vercel**: The pipeline must run efficiently in Vercel's build environment and edge/serverless runtime. We can leverage Static Site Generation (SSG) or Incremental Static Regeneration (ISR) to optimize load speed and eliminate database roundtrips.
+2. **MDX-capable**: The new pipeline must support MDX (`.mdx`) to allow embedding React components inside post content — enabling future rich features like interactive diagrams, custom callouts, and embedded code playgrounds.
 3. **Code block syntax highlighting**: Posts are technical articles on software engineering and architecture. Code blocks with language-specific highlighting are a hard requirement, not a nice-to-have.
 4. **Hero image support**: Each post must be able to declare a featured image rendered prominently at the top of the post, referenced via frontmatter.
 5. **Full SEO metadata surface**: The pipeline must expose enough structured data per post (title, description, date, tags, canonical URL, Open Graph image) to power `generateMetadata()` per page.
@@ -28,21 +28,20 @@ The legacy blog ([codesandtags/blog](https://github.com/codesandtags/blog)) was 
 
 ### Existing Content Inventory
 
-The legacy blog has **12 posts**, all in `.md` format, with the following frontmatter shape:
+The legacy blog has **12 posts**, all in `.md` format, using a Jekyll-legacy frontmatter schema:
 
 ```markdown
 ---
-title: "Fundamentals of Software Architecture – Part 1"
-date: 2024-01-15
+layout: post
+title: "Fundamentals of Software Architecture Book - Part 1"
+date: 2023-07-17 20:15 -0500
 author: codesandtags
-categories: ["architecture", "software-design"]
-tags: ["ADR", "microservices"]
-image: /images/blog/my-post-hero.png
-draft: false
+categories: [Software Architecture]
+tags: [books, fundamentals, software]
 ---
 ```
 
-The migration path must preserve this frontmatter schema (see ADR-0003) while adding new fields.
+The migration path must parse this frontmatter schema while allowing us to clean up and enhance it (e.g., adding `description` and `heroImage` support, removing the deprecated `layout` tag, and converting timezone-offset dates into clean ISO dates — see ADR-0003).
 
 ---
 
@@ -105,11 +104,11 @@ export async function getPostBySlug(slug: string) {
 ```
 
 **Genuine advantages:**
-- **Frontmatter is a first-class citizen.** `gray-matter` reads YAML frontmatter identically to how Astro reads it — the 12 existing `.md` posts migrate with zero frontmatter changes.
+- **Frontmatter is a first-class citizen.** `gray-matter` reads YAML frontmatter identically to how Astro reads it — the 12 existing `.md` posts migrate with zero frontmatter parsing changes.
 - **Unified content API.** One function can return all posts with frontmatter for the listing page and a single post's rendered body for the detail page — sharing one data model.
-- **Static export compatible.** `serialize()` runs only at build time in `generateStaticParams` and `generateMetadata`, producing no runtime Node.js dependency.
+- **Vercel deployment compatible.** Performs static generation at build time during `generateStaticParams` and can also run dynamically or via ISR (Incremental Static Regeneration) on Vercel if needed.
 - **Remark/Rehype plugin ecosystem.** Full access to `remark-gfm` (GitHub Flavored Markdown), `rehype-pretty-code` (code highlighting with Shiki), `rehype-slug`, `remark-reading-time`, and hundreds more.
-- **Battle-tested at scale.** Used by Vercel, Planetscale, and Leerob's personal blog — the canonical reference implementation for content sites on Next.js.
+- **Battle-tested at scale.** Used by Vercel, Planetscale, and many personal developer sites on Next.js.
 
 **Critical trade-offs:**
 - **Two packages to understand** (`gray-matter` + `next-mdx-remote`) instead of one. Slightly more boilerplate than `@next/mdx`.
@@ -147,8 +146,8 @@ A type-safe content SDK that generates TypeScript types from a content schema de
 
 | Concern | Package | Rationale |
 |---|---|---|
-| Frontmatter parsing | `gray-matter` | Zero-config YAML parsing, identical to legacy blog format |
-| MDX rendering | `next-mdx-remote` | Static-export safe, RSC-compatible via `/rsc` export |
+| Frontmatter parsing | `gray-matter` | Zero-config YAML parsing, compatible with Jekyll/Astro formats |
+| MDX rendering | `next-mdx-remote` | RSC-compatible via `/rsc` export, highly optimized for Vercel builds |
 | Code highlighting | `rehype-pretty-code` + `shiki` | Shiki-powered, zero client JS, 200+ themes, line numbers, diff support |
 | GFM (tables, strikethrough) | `remark-gfm` | GitHub Flavored Markdown compatibility |
 | Heading anchors | `rehype-slug` + `rehype-autolink-headings` | Deep-linkable headings for long technical posts |
@@ -205,11 +204,12 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
 ### Positive
 
-- The 12 existing `.md` posts migrate without any frontmatter changes — only a file extension rename from `.md` to `.mdx` is required.
+- The 12 existing `.md` posts migrate easily (only require basic layout field removals, date format normalization, and asset path updates during migration — see ADR-0003).
 - Code blocks with syntax highlighting, line highlights, diff markers, and file name annotations are available from day one.
 - SEO metadata (Open Graph, Twitter Card, `article:published_time`) is fully driven by per-post frontmatter with zero manual HTML edits.
 - The `rehype-pretty-code` renderer emits zero client-side JavaScript — code highlighting is purely static HTML/CSS.
 - `remark-reading-time` exposes a `readingTime` field that can be shown on listing cards and post headers.
+- Since we are deploying on Vercel, we can choose between fully Static Site Generation (SSG) or ISR if we ever decide to change how content is fetched.
 
 ### Negative (Trade-offs Accepted)
 
@@ -222,7 +222,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 | ADR | Topic | Priority |
 |---|---|---|
 | ADR-0003 | Blog post frontmatter schema and content governance | High — blocks migration |
-| ADR-0004 | Image optimization strategy for blog assets on GitHub Pages (static export constraints) | Medium |
+| ADR-0004 | Image optimization strategy for blog assets | Medium |
 
 ---
 

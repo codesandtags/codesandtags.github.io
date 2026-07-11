@@ -20,7 +20,7 @@ ADR-0002 established that `gray-matter` will parse YAML frontmatter from `.mdx` 
 1. **Silent runtime errors**: A missing required field (e.g., `description`) causes the SEO `generateMetadata()` to emit an empty string to search crawlers — a silent failure with real SEO consequences.
 2. **Inconsistent content**: Some posts have `categories`, others have `topics`, others have neither. The listing page cannot filter or group posts reliably.
 3. **Broken social cards**: If `heroImage` is missing or incorrectly pathed, Open Graph images silently fall back to the site default, missing the per-post sharing opportunity.
-4. **Migration drift**: Migrating 12 existing posts from the legacy Astro blog without a schema contract risks introducing field naming inconsistencies (`image` vs. `heroImage`, `date` vs. `publishedAt`) that accumulate as technical debt.
+4. **Migration drift**: Migrating 12 existing posts from the legacy blog without a schema contract risks introducing field naming inconsistencies (`image` vs. `heroImage`, `date` vs. `publishedAt`) or parsing errors due to legacy formats.
 
 The frontmatter schema is the **contract between content authors and the rendering engine**. A poorly defined contract is a source of subtle bugs that are expensive to debug.
 
@@ -29,16 +29,17 @@ The frontmatter schema is the **contract between content authors and the renderi
 The 12 posts from [codesandtags/blog](https://github.com/codesandtags/blog) use this shape:
 
 ```yaml
-title: "Title of the post"
-date: 2024-01-15
+layout: post
+title: "Fundamentals of Software Architecture Book - Part 1"
+date: 2023-07-17 20:15 -0500
 author: codesandtags
-categories: ["category1", "category2"]
-tags: ["tag1", "tag2"]
-image: /images/blog/my-post-hero.png
-draft: false
+categories: [Software Architecture]
+tags: [books, fundamentals, software]
 ```
 
-**Gaps identified in this schema:**
+**Gaps/Formatting issues identified in this schema:**
+- `layout: post` → Redundant Jekyll/Astro layout tag; should be stripped as layouts are governed globally by Next.js.
+- `date: 2023-07-17 20:15 -0500` → timezone-offset formats can cause parsing inconsistencies across Node versions; must be converted to standard ISO date strings (`YYYY-MM-DD`).
 - No `description` / `excerpt` field → cannot populate `og:description` or listing cards without parsing post body.
 - No `slug` field → slug must be derived from filename (acceptable, but must be documented as a rule).
 - No `updatedAt` field → cannot show "last updated" timestamps or signal freshness to crawlers.
@@ -64,8 +65,8 @@ tags: ["architecture", "software-design", "engineering"]  # REQUIRED — at leas
 categories: ["Engineering", "Career"]                     # OPTIONAL — high-level grouping for navigation
 
 # ─── DATES ───────────────────────────────────────────────────────
-date: 2024-01-15                                          # REQUIRED — ISO 8601, used for sorting and article:published_time
-updatedAt: 2024-06-01                                     # OPTIONAL — used in article:modified_time; omit if never updated
+date: 2024-01-15                                          # REQUIRED — ISO 8601 YYYY-MM-DD, used for sorting and article:published_time
+updatedAt: 2024-06-01                                     # OPTIONAL — YYYY-MM-DD, used in article:modified_time; omit if never updated
 
 # ─── AUTHORSHIP ──────────────────────────────────────────────────
 author: codesandtags                                      # OPTIONAL — defaults to "Edwin Torres" if omitted
@@ -193,12 +194,13 @@ The 12 existing posts from the legacy Astro blog require the following transform
 
 | Legacy Field | Action | New Field |
 |---|---|---|
+| `layout` | ❌ Strip / Delete | _(None - layouts are handled globally)_ |
 | `title` | ✅ Keep as-is | `title` |
-| `date` | ✅ Keep as-is | `date` |
+| `date` | ⚠️ Reformat from timezone format (e.g. `2023-07-17 20:15 -0500`) to standard ISO `YYYY-MM-DD` | `date` |
 | `author` | ✅ Keep as-is | `author` |
 | `tags` | ✅ Keep as-is | `tags` |
 | `categories` | ✅ Keep as-is | `categories` |
-| `image` | ⚠️ Rename + move asset | `heroImage` |
+| `image` / asset path | ⚠️ Migrate images from `/assets/img/posts/...` to `/public/images/blog/<slug>/...` and update markdown paths | `heroImage` |
 | `draft` | ✅ Keep as-is | `draft` |
 | _(missing)_ | ➕ Add manually per post | `description` |
 | _(missing)_ | ➕ Add if applicable | `heroImageAlt` |
@@ -229,7 +231,7 @@ The 12 existing posts from the legacy Astro blog require the following transform
 
 | ADR | Topic | Priority |
 |---|---|---|
-| ADR-0004 | Image optimization strategy for blog assets on GitHub Pages | Medium |
+| ADR-0004 | Image optimization strategy for blog assets | Medium |
 
 ---
 
