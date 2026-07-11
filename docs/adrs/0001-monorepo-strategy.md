@@ -26,7 +26,7 @@ This is a **one-way-door decision**. The folder structure, routing model, and mo
 
 The following constraints are **non-negotiable** and must be satisfied by any candidate option:
 
-1. **GitHub Pages deployment**: The project is statically exported and served via GitHub Pages under a single domain. No server runtime is available.
+1. **Vercel deployment**: The project is deployed via Vercel. This removes the static-only constraints of GitHub Pages and allows for Node.js runtimes, Edge functions, and native monorepo support.
 2. **Single domain (`codesandtags.io`)**: All content — portfolio, blog, future sections — must coexist under one origin.
 3. **TypeScript-first**: All code must be type-safe. No `any` escapes.
 4. **Node.js v22 (Volta-pinned)**: The toolchain must be compatible with the pinned Node.js version.
@@ -69,14 +69,14 @@ A true monorepo using workspace tooling: separate packages for the UI library, u
 - Enforces hard package boundaries via `package.json` scoping. No accidental coupling.
 - Packages in `packages/ui` can theoretically be published to npm or reused in entirely separate projects.
 - Turborepo's remote caching makes large-scale builds efficient when many packages exist.
-- The standard pattern at organizations with many engineers or separate deployment targets.
+- **Native Vercel Support**: Vercel fully supports Turborepo out of the box, making deployment of multiple apps straightforward.
 
 **Critical trade-offs for this specific project:**
-- **GitHub Pages is a hard blocker for co-deployment.** GitHub Pages serves one static directory per repo. To deploy two apps (`portfolio` and `blog`) under a single domain, a custom post-build script must merge the two `out/` directories. This is brittle, poorly documented, and fails silently on path collisions.
-- **Significant tooling overhead at current scale.** This project has one developer and ~10 pages today. Workspace orchestration adds `turbo.json`, inter-package symlinks, and multi-`tsconfig.json` coordination — all for marginal benefit at this scale.
-- **Turbopack does not support workspaces.** Next.js 16's Turbopack-based dev server does not have first-class support for Turborepo workspaces. Using both together means falling back to slower Webpack for local development, undermining the fast build goal.
+- **Routing Complexity for Single Domain**: While Vercel supports deploying multiple apps, serving them seamlessly under a *single domain* (e.g., `codesandtags.io/blog` mapping to `apps/blog` and `codesandtags.io/*` mapping to `apps/portfolio`) requires configuring Vercel routing rules or Next.js rewrites. This adds routing complexity compared to a single app.
+- **Significant tooling overhead at current scale**: This project has one developer and ~10 pages today. Workspace orchestration adds `turbo.json`, inter-package symlinks, and multi-`tsconfig.json` coordination — all for marginal benefit at this scale.
+- **Turbopack does not support workspaces**: Next.js 16's Turbopack-based dev server does not have first-class support for Turborepo workspaces. Using both together means falling back to slower Webpack for local development, undermining the fast build goal.
 
-**Verdict:** Architecturally sound for teams and large projects. Wrong tool for this project today given the deployment constraint and team size. Introduces more problems than it solves.
+**Verdict:** Architecturally sound for teams and large projects. Even with Vercel making deployment easier, it is still the wrong tool for this project today given the team size and overhead. Introduces more problems than it solves.
 
 ---
 
@@ -116,7 +116,7 @@ A single Next.js project organized with strict internal module conventions enfor
 ```
 
 **Genuine advantages:**
-- **Zero deployment complexity.** `next build` with `output: 'export'` produces one `out/` directory that is served directly by GitHub Pages. No post-build merging or custom scripts.
+- **Zero deployment complexity.** Deploys instantly to Vercel with zero custom configuration. All routing (`/blog`, `/projects`) works natively through the App Router without needing rewrites or sub-app proxies.
 - **Native code splitting.** The Next.js App Router automatically produces per-route JS bundles. `/blog/[slug]` only loads the markdown renderer; `/` only loads the hero and featured work components.
 - **Turbopack works at full capacity.** No workspace overhead means Turbopack handles all HMR and incremental builds natively, delivering sub-100ms refresh times.
 - **One configuration surface.** A single `tsconfig.json`, `eslint.config.mjs`, `tailwind.config.ts`, and `package.json` cover all code uniformly.
@@ -139,6 +139,7 @@ Astro is a content-first static site framework with native MDX support, zero cli
 **Why it was considered:**
 - Purpose-built for content-heavy sites with mixed static and interactive content — a near-perfect description of a portfolio + blog.
 - Exceptional build performance and Lighthouse scores out of the box.
+- Excellent Vercel deployment support.
 
 **Why it was rejected:**
 - **Requires a full framework migration.** The existing portfolio is entirely built on Next.js App Router with Tailwind. Migrating to Astro would require rewriting all existing pages and components.
@@ -153,7 +154,7 @@ Astro is a content-first static site framework with native MDX support, zero cli
 
 **We adopt Option B: Modular Single Next.js Application.**
 
-This is the right decision for this project at this time. It satisfies every hard constraint, achieves every engineering goal, and avoids over-engineering a solution for a problem (multi-team, multi-deployment) that does not exist here. The trade-offs accepted (convention-based boundaries, non-publishable internal modules) are well understood and appropriate for a single-author personal project.
+Even with Vercel lifting the single-directory deployment constraint of GitHub Pages, Option B remains the right decision. It satisfies every hard constraint, achieves every engineering goal, and avoids over-engineering a solution for a problem (multi-team, multi-deployment) that does not exist here. The trade-offs accepted (convention-based boundaries, non-publishable internal modules) are well understood and appropriate for a single-author personal project.
 
 ---
 
@@ -179,7 +180,7 @@ The following decisions are **not in scope for this ADR** but are directly trigg
 |---|---|---|
 | ADR-0002 | Markdown / MDX parsing strategy (`gray-matter` + `next-mdx-remote` vs. `@next/mdx` vs. `contentlayer`) | High |
 | ADR-0003 | Blog post frontmatter schema and content governance | Medium |
-| ADR-0004 | Image optimization strategy for blog assets on GitHub Pages | Medium |
+| ADR-0004 | Image optimization strategy for blog assets | Medium |
 
 ---
 
@@ -188,5 +189,5 @@ The following decisions are **not in scope for this ADR** but are directly trigg
 - [Next.js App Router Documentation](https://nextjs.org/docs/app)
 - [Next.js Static Export (`output: 'export'`)](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
 - [Turbopack vs. Webpack in Next.js 16](https://nextjs.org/blog/turbopack-for-development-stable)
-- [Turborepo + GitHub Pages Deployment Limitations](https://turbo.build/repo/docs/core-concepts/monorepos)
+- [Vercel Monorepo Deployments](https://vercel.com/docs/monorepos)
 - [Architecture Decision Records – Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
