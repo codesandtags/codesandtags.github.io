@@ -1,65 +1,69 @@
 ---
-title: "Welcome to My Blog: Thoughts on Software Architecture & Engineering"
-description: "Why I started writing again, what you can expect from this blog, and how ultralearning shaped my engineering philosophy."
-tags: ["engineering", "software-architecture", "ultralearning", "career"]
+title: "Welcome to My Blog: Getting Real, Relaunching, and What's Next"
+description: "A look at why I stopped writing, what I've been up to (from marathons to job transitions), and what to expect on this blog."
+tags: ["career", "engineering", "software-architecture", "personal-growth"]
 categories: ["Engineering", "Career"]
-date: 2024-01-15
+date: 2026-07-11
 author: codesandtags
 draft: false
 featured: true
 ---
 
-After a long break from writing, I am relaunching this blog — now integrated directly into my portfolio under one unified Next.js application. No more context-switching between two separate repos, two deployment pipelines, and two design systems that slowly drifted apart.
+After a long break from writing, I am relaunching this blog. 
 
-## Why I Stopped Writing
+If you read my previous drafts, they probably sounded like typical corporate announcements—blaming the hiatus on "shipping micro-frontends" or "scaling platform engineering." But the truth is simpler and much more human: I was busy living life, pushing my limits, and learning in the background.
 
-Ironically, the reason I stopped writing was because I was learning too much, too fast. Between shipping Micro Frontend architecture across seven applications at Scotiabank, leading frontend platform work at HelloFresh, and diving deep into Backstage on Anthos — there was never a quiet moment to sit down and synthesise what I was learning into something shareable.
+## The Real Story: Why I Stopped Writing
 
-I kept a folder of half-finished drafts. Topics like:
+Last year was a whirlwind of physical, mental, and professional milestones. Here is where my energy actually went:
 
-- Why the strangler fig pattern is underrated for large-scale migrations
-- How to interview for senior engineering roles when you are already one
-- Lessons from running a frontend guild at scale
+### 1. Pushing Physical Limits
+I stepped away from the keyboard to challenge my body. Over the past year, I:
+* Completed a **triathlon**.
+* Ran **three marathons**: the Toronto Marathon, the Toronto Waterfront Marathon, and the Tamarack Ottawa Marathon. 
 
-They never made it past the outline stage.
+Training for these endurance events taught me a lot about consistency, grit, and managing energy—lessons that translate directly into how I approach long-term engineering projects.
 
-## What Changes This Time
+### 2. Job Transitions
+I navigated two major career moves:
+* Transitioned from **Scotiabank** to **HelloFresh**, where I led frontend platform initiatives.
+* Joined **Questrade** as a **Principal Full-Stack Engineer**. 
 
-The architecture. Literally.
+Adapting to new systems, establishing trust, and understanding different organizational cultures took a significant amount of focus and dedication.
 
-By integrating the blog into `codesandtags.github.io` as a proper route (`/blog/[slug]`) rather than a separate Astro deployment, writing and publishing become part of the same `git push` workflow as updating my portfolio. No additional CI pipeline. No separate deployment to watch. Less friction means more posts.
+### 3. Mentorship & Deep-Diving
+Instead of writing public articles, I focused on direct interaction and core fundamentals:
+* Conducted 1-on-1 mentorship sessions on **ADPList**, helping other engineers navigate their career paths.
+* Went back to basics, deep-diving into engineering fundamentals and reading key books that shaped my architectural mindset, including:
+  * *Software Architecture: The Hard Parts* by Neal Ford, Mark Richards, Pramod Sadalage, and Zhamak Dehghani
+  * *Staff Engineer* by Will Larson
+  * *The Software Engineer's Guidebook* by Gergely Orosz
 
-The technical stack driving this blog:
+---
 
-```typescript title="src/lib/markdown/index.ts"
-// Fast frontmatter extraction — no full MDX compilation for listings
-export async function getAllPosts(): Promise<BlogPost[]> {
-  const files = (await readdir(BLOG_DIR)).filter((f) => /\.mdx?$/.test(f))
-  // ...
-}
-```
+## Why I'm Back Now
 
-Code blocks in every post ship with **zero client-side JavaScript** — syntax highlighting is done at build time by [Shiki](https://shiki.style/) via `rehype-pretty-code`. What you see is pure, pre-rendered HTML and CSS.
+Having settled into my role at Questrade and completed those athletic milestones, I finally have the space and time to focus on personal projects again. 
 
-## What You Can Expect
+I want to get back to writing, sharing my knowledge, and creating video content. As part of this relaunch, I've integrated this blog directly into [codesandtags.github.io](https://codesandtags.github.io) as a single Next.js project. No separate deployment pipelines or disconnected stacks—just a clean, unified workflow.
 
-Posts will cluster around three themes:
+I will also be continuing to create content on my [YouTube channel](https://www.youtube.com/@codesandtags), bringing these written concepts to life.
 
-### 1. Software Architecture
-The decisions I have made (and a few I regret). Topics like Micro Frontend trade-offs, how to write useful ADRs, when NOT to use event-driven architecture, and what "modular monolith" actually means in practice.
+---
 
-### 2. Engineering Leadership
-How to grow from senior engineer to staff/principal without losing your technical depth. On running frontend guilds, doing effective architecture reviews, and the difference between influence and authority.
+## What You Can Expect This Year
 
-### 3. Ultralearning
-I read Scott Young's *Ultralearning* in 2019 and it changed how I approach skill acquisition. I have applied its principles to everything from learning Angular from scratch in 90 days to picking up infrastructure tooling while shipping production features. Practical notes on deliberate practice for engineers.
+Looking ahead, my goals are centered on two main pillars where I want to expand my expertise:
 
-## One Closing Thought
+### 1. Deep-Diving into AI
+I'll be honest: I lack deep knowledge in AI topics, and it has become a clear area of growth for me. This year, I am committed to learning AI fundamentals, playing with integrations, and documenting my journey here as I build up that knowledge.
 
-> The best way to understand something deeply is to teach it.
+### 2. Micro-Frontends in Data-Intensive Architectures
+Building micro-frontends is one thing, but operating them within data-intensive architectures—where performance, real-time synchronization, and complex data streams are critical—is a different beast. I'll be sharing design patterns, architectural decisions, and trade-offs in this space.
 
-I have learned more from writing my [Software Architecture book notes](/blog) than from any conference talk or course. Writing forces you to find the gaps in your understanding.
+### 3. Software Architecture & Engineering Leadership
+Drawing from my daily work as a Principal Engineer, I'll write about system design, scaling teams, building technical consensus, and the transition from individual contributor to staff/principal roles.
 
-More posts coming. No fixed schedule — only when there is something worth saying.
+Thank you for reading, and I'm excited to share this next chapter with you.
 
 — **Edwin** / [@codesandtags](https://github.com/codesandtags)
