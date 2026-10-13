@@ -25,9 +25,9 @@ Pinned versions reflect `package.json` / `package-lock.json` as of the current w
 | **Component system** | [shadcn/ui](https://ui.shadcn.com/) (New York style) + Radix UI + Lucide icons | — |
 | **Analytics** | `@vercel/analytics` | `1.6.x` |
 | **Deployment target** | Vercel | — |
-| **Node.js** | Volta-pinned | `22.12.0` |
+| **Node.js** | Volta-pinned | `24.18.0` |
 
-> **Note:** CI currently runs on Node.js 20 (see `.github/workflows/ci.yml`), while local development is pinned to Node 22 via Volta. Align these when updating CI.
+> **Note:** CI (see `.github/workflows/ci.yml`) and local development (Volta) both run on Node.js 24.x. Keep them aligned, and keep Vercel's Node.js version set to 24.x as well.
 
 ---
 
