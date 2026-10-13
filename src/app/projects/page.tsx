@@ -18,6 +18,10 @@ const projects: Project[] = [
     image:
       'https://raw.githubusercontent.com/codesandtags/dark-mode-extension/refs/heads/main/assets/small-promo-tile.png',
     keywords: ['Google Chrome Extension', 'JavaScript'],
+    metrics: [
+      { icon: 'Users', value: '~800', label: 'weekly active users' },
+      { icon: 'Download', value: '2K+', label: 'installs' },
+    ],
     links: [
       {
         icon: 'Github',
@@ -38,6 +42,10 @@ const projects: Project[] = [
     image:
       'https://raw.githubusercontent.com/codesandtags/frontend-resources/refs/heads/main/public/images/frontend-resources-showcase.png',
     keywords: ['Documentation', 'Frontend'],
+    metrics: [
+      { icon: 'Star', value: '200+', label: 'GitHub stars' },
+      { icon: 'BookMarked', value: '185+', label: 'resources curated' },
+    ],
     links: [
       {
         icon: 'Github',
@@ -100,7 +108,7 @@ export default function ProjectsPage() {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col"
           >
             <div className="relative h-48">
               <Image
@@ -111,11 +119,38 @@ export default function ProjectsPage() {
               />
             </div>
 
-            <div className="p-6 flex flex-col">
+            <div className="p-6 flex flex-col flex-1">
               <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4 flex-1">
                 {project.description}
               </p>
+
+              {project.metrics && (
+                <ul
+                  aria-label={`${project.title} impact`}
+                  className="grid grid-cols-2 gap-3 mb-4"
+                >
+                  {project.metrics.map((metric) => {
+                    const MetricIcon = getIcon(metric.icon)
+                    return (
+                      <li
+                        key={metric.label}
+                        className="rounded-lg border border-primary/30 bg-gradient-to-br from-primary/15 to-primary/5 px-3 py-2"
+                      >
+                        <div className="flex items-center gap-1.5 text-primary">
+                          <MetricIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                          <span className="text-base font-semibold leading-none">
+                            {metric.value}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-[11px] text-gray-600 dark:text-gray-300">
+                          {metric.label}
+                        </p>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.keywords.map((keyword, idx) => (
