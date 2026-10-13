@@ -18,7 +18,7 @@ jobs:
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # Ensure it matches what you use in Vercel
+          node-version: 24 # Ensure it matches what you use in Vercel
           cache: 'npm' # Or 'pnpm' / 'yarn' if you use that
 
       - name: 📦 Install Dependencies
